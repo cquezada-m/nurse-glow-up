@@ -8,7 +8,7 @@
       "alternateName": "Centro Estética Nurse Glow Up Santiago",
       "description": "Centro de estética especializado en tratamientos no invasivos como mesoterapia, PRP, lipoláser, radiofrecuencia, cavitación y vacumterapia en Santiago de Chile.",
       "url": "https://nurseglowup.cl",
-      "telephone": "+56223456789",
+      "telephone": "+56975730668",
       "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
@@ -181,7 +181,7 @@
       "@id": "https://nurseglowup.cl/#localbusiness",
       "name": "Nurse Glow Up",
       "image": "https://nurseglowup.cl/images/centro-exterior.jpg",
-      "telephone": "+56223456789",
+      "telephone": "+56975730668",
       "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
@@ -317,14 +317,14 @@
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+56223456789",
+          "telephone": "+56975730668",
           "contactType": "customer service",
           "availableLanguage": "Spanish",
           "areaServed": "CL"
         },
         {
           "@type": "ContactPoint",
-          "telephone": "+56912345678",
+          "telephone": "+56975730668",
           "contactType": "customer service",
           "availableLanguage": "Spanish",
           "areaServed": "CL",

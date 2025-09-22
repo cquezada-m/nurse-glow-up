@@ -13,24 +13,24 @@ function gtmTrack(eventName, eventData = {}) {
 // Intersection Observer for view events and animations
 const observerOptions = {
   threshold: 0.3,
-  rootMargin: '0px 0px -50px 0px'
+  rootMargin: "0px 0px -50px 0px",
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const element = entry.target;
-      
+
       // GTM Tracking
-      const eventName = element.getAttribute('data-gtm-event');
+      const eventName = element.getAttribute("data-gtm-event");
       if (eventName) {
         gtmTrack(eventName, {
           section: element.tagName.toLowerCase(),
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         });
         observer.unobserve(element); // Only track once
       }
-      
+
       // Animate elements
       animateOnScroll(element);
     }
@@ -40,48 +40,48 @@ const observer = new IntersectionObserver((entries) => {
 // Animation on scroll function
 function animateOnScroll(element) {
   // Animate benefit items
-  if (element.classList.contains('benefits')) {
-    const benefitItems = element.querySelectorAll('.benefit-item');
+  if (element.classList.contains("benefits")) {
+    const benefitItems = element.querySelectorAll(".benefit-item");
     benefitItems.forEach((item, index) => {
       setTimeout(() => {
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-        item.style.transition = 'all 0.6s ease-out';
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+        item.style.transition = "all 0.6s ease-out";
       }, index * 150);
     });
   }
-  
+
   // Animate service cards
-  if (element.classList.contains('services')) {
-    const serviceCards = element.querySelectorAll('.service-card');
+  if (element.classList.contains("services")) {
+    const serviceCards = element.querySelectorAll(".service-card");
     serviceCards.forEach((card, index) => {
       setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-        card.style.transition = 'all 0.6s ease-out';
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+        card.style.transition = "all 0.6s ease-out";
       }, index * 100);
     });
   }
-  
+
   // Animate testimonials
-  if (element.classList.contains('testimonials')) {
-    const testimonials = element.querySelectorAll('.testimonial');
+  if (element.classList.contains("testimonials")) {
+    const testimonials = element.querySelectorAll(".testimonial");
     testimonials.forEach((testimonial, index) => {
       setTimeout(() => {
-        testimonial.style.opacity = '1';
-        testimonial.style.transform = 'translateY(0)';
-        testimonial.style.transition = 'all 0.6s ease-out';
+        testimonial.style.opacity = "1";
+        testimonial.style.transform = "translateY(0)";
+        testimonial.style.transition = "all 0.6s ease-out";
       }, index * 200);
     });
   }
-  
+
   // Animate form
-  if (element.classList.contains('lead-form')) {
-    const form = element.querySelector('#leadForm');
+  if (element.classList.contains("lead-form")) {
+    const form = element.querySelector("#leadForm");
     if (form) {
-      form.style.opacity = '1';
-      form.style.transform = 'translateY(0)';
-      form.style.transition = 'all 0.8s ease-out';
+      form.style.opacity = "1";
+      form.style.transform = "translateY(0)";
+      form.style.transition = "all 0.8s ease-out";
     }
   }
 }
@@ -113,31 +113,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Service card clicks
+  // Service card clicks (detailed services)
   const serviceButtons = document.querySelectorAll(
     '[data-gtm-event^="click_service_"]'
   );
   serviceButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
+      e.preventDefault();
       const eventName = this.getAttribute("data-gtm-event");
       const serviceType = eventName.replace("click_service_", "");
 
+      // Get service name from the card
+      const serviceCard = this.closest(".service-detailed-card");
+      const serviceName = serviceCard
+        ? serviceCard.querySelector("h3").textContent
+        : "unknown";
+
       gtmTrack(eventName, {
         service_type: serviceType,
-        service_name:
-          this.closest(".service-card").querySelector("h3").textContent,
+        service_name: serviceName,
         timestamp: new Date().toISOString(),
       });
 
-      // Scroll to form
-      document.getElementById("reserva").scrollIntoView({
-        behavior: "smooth",
-      });
+      // Scroll to contact form
+      const contactForm = document.getElementById("contacto");
+      if (contactForm) {
+        contactForm.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
 
-      // Pre-fill form
-      const treatmentSelect = document.getElementById("tratamiento");
-      if (treatmentSelect) {
-        treatmentSelect.value = serviceType;
+        // Pre-fill form with selected service
+        setTimeout(() => {
+          const serviceSelect = document.getElementById("servicio");
+          if (serviceSelect) {
+            serviceSelect.value = serviceType;
+            // Add visual feedback
+            serviceSelect.style.borderColor = "#D946EF";
+            serviceSelect.style.boxShadow = "0 0 0 3px rgba(217, 70, 239, 0.1)";
+            setTimeout(() => {
+              serviceSelect.style.borderColor = "";
+              serviceSelect.style.boxShadow = "";
+            }, 2000);
+          }
+        }, 500);
       }
     });
   });
@@ -157,7 +176,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Form handling
-  const leadForm = document.getElementById("leadForm");
+  const leadForm =
+    document.getElementById("leadForm") ||
+    document.querySelector("#contacto form");
   if (leadForm) {
     leadForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -169,16 +190,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // Validate required fields
-      const requiredFields = ["nombre", "whatsapp", "consentimiento"];
+      const requiredFields = ["nombre", "servicio"];
       let isValid = true;
       let missingFields = [];
 
       requiredFields.forEach((field) => {
         const element = document.getElementById(field);
-        if (
-          !element.value ||
-          (field === "consentimiento" && !element.checked)
-        ) {
+        if (!element) return;
+
+        if (!element.value) {
           isValid = false;
           missingFields.push(field);
           element.style.borderColor = "#E53E3E";
@@ -224,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
         form_data: {
           nombre: formObject.nombre,
           comuna: formObject.comuna || "no_specified",
-          tratamiento: formObject.tratamiento || "no_specified",
+          servicio: formObject.servicio || "no_specified",
           horario: formObject.horario || "no_specified",
           has_message: !!formObject.mensaje,
         },
@@ -251,13 +271,13 @@ document.addEventListener("DOMContentLoaded", function () {
           `Hola! Acabo de completar el formulario en su sitio web. Mi nombre es ${
             formObject.nombre
           } y estoy interesado/a en ${
-            formObject.tratamiento || "sus tratamientos"
+            formObject.servicio || "sus tratamientos"
           }. ¿Podemos coordinar una evaluación gratuita?`
         );
 
         setTimeout(() => {
           window.open(
-            `https://wa.me/56912345678?text=${whatsappMessage}`,
+            `https://wa.me/56975730668?text=${whatsappMessage}`,
             "_blank"
           );
         }, 2000);
