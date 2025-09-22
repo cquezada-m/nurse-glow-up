@@ -1,0 +1,340 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalBusiness",
+      "@id": "https://centroestetica.cl/#medicalbusiness",
+      "name": "Centro de Estética Premium",
+      "alternateName": "Centro Estética Santiago",
+      "description": "Centro de estética especializado en tratamientos no invasivos como mesoterapia, PRP, lipoláser, radiofrecuencia, cavitación y vacumterapia en Santiago de Chile.",
+      "url": "https://centroestetica.cl",
+      "telephone": "+56223456789",
+      "email": "info@centroestetica.cl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Providencia 1234",
+        "addressLocality": "Providencia",
+        "addressRegion": "Región Metropolitana",
+        "postalCode": "7500000",
+        "addressCountry": "CL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4372,
+        "longitude": -70.6506
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "CLP",
+      "paymentAccepted": "Cash, Credit Card, Debit Card, Bank Transfer",
+      "image": [
+        "https://centroestetica.cl/images/centro-exterior.jpg",
+        "https://centroestetica.cl/images/sala-tratamientos.jpg",
+        "https://centroestetica.cl/images/equipo-medico.jpg"
+      ],
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://centroestetica.cl/logo.png",
+        "width": 300,
+        "height": 100
+      },
+      "sameAs": [
+        "https://www.instagram.com/centroestetica",
+        "https://www.facebook.com/centroestetica"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "María José P."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Increíble el resultado con mesoterapia. Se nota desde la primera sesión. El equipo es muy profesional.",
+          "datePublished": "2024-08-15"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Carolina M."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "El PRP me cambió la piel completamente. Más firme y luminosa. Lo recomiendo 100%.",
+          "datePublished": "2024-08-20"
+        }
+      ],
+      "medicalSpecialty": [
+        "Aesthetic Medicine",
+        "Dermatology",
+        "Cosmetic Procedures"
+      ],
+      "availableService": [
+        {
+          "@type": "MedicalProcedure",
+          "name": "Mesoterapia",
+          "description": "Tratamiento para reducir grasa localizada y celulitis mediante inyecciones específicas",
+          "procedureType": "Non-invasive aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Plasma Rico en Plaquetas (PRP)",
+          "description": "Regeneración de la piel usando el propio plasma del paciente",
+          "procedureType": "Regenerative aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Lipoláser",
+          "description": "Reducción de medidas y contorno corporal no invasivo",
+          "procedureType": "Laser aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Radiofrecuencia",
+          "description": "Tratamiento para firmeza y efecto tensor de la piel",
+          "procedureType": "Radiofrequency aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Cavitación",
+          "description": "Eliminación de grasa localizada sin cirugía",
+          "procedureType": "Ultrasound aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Vacumterapia",
+          "description": "Drenaje linfático y mejora de la circulación",
+          "procedureType": "Vacuum therapy treatment"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tratamientos Estéticos",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Evaluación Gratuita",
+              "description": "Consulta inicial sin costo para evaluar necesidades del paciente"
+            },
+            "price": "0",
+            "priceCurrency": "CLP",
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2024-09-01",
+            "validThrough": "2024-09-30"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Descuento Primer Tratamiento",
+              "description": "20% de descuento en el primer tratamiento"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "20",
+              "priceCurrency": "CLP",
+              "valueAddedTaxIncluded": true,
+              "eligibleQuantity": {
+                "@type": "QuantitativeValue",
+                "value": 1
+              }
+            },
+            "availability": "https://schema.org/LimitedAvailability",
+            "validFrom": "2024-09-01",
+            "validThrough": "2024-09-30"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://centroestetica.cl/#localbusiness",
+      "name": "Centro de Estética Premium",
+      "image": "https://centroestetica.cl/images/centro-exterior.jpg",
+      "telephone": "+56223456789",
+      "email": "info@centroestetica.cl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Providencia 1234",
+        "addressLocality": "Providencia",
+        "addressRegion": "Región Metropolitana",
+        "postalCode": "7500000",
+        "addressCountry": "CL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4372,
+        "longitude": -70.6506
+      },
+      "url": "https://centroestetica.cl",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "priceRange": "$$"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://centroestetica.cl/#faqpage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántas sesiones necesito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende del tratamiento y objetivos. Generalmente entre 4-8 sesiones para resultados óptimos. En la evaluación gratuita determinamos el plan personalizado según tus necesidades específicas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los tratamientos duelen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Son procedimientos mínimamente invasivos. Puedes sentir molestias leves que son bien toleradas. Utilizamos técnicas y equipos que minimizan cualquier incomodidad durante el tratamiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay contraindicaciones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, embarazo, lactancia, enfermedades autoinmunes activas, infecciones en la zona a tratar, entre otras. Evaluamos cada caso individualmente en la consulta inicial para garantizar la seguridad del tratamiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo me preparo para el tratamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Te daremos indicaciones específicas según el tratamiento elegido. Generalmente incluye mantener buena hidratación, evitar alcohol 24-48 horas antes, y no usar productos irritantes en la zona a tratar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Son compatibles los tratamientos entre sí?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muchos tratamientos se pueden combinar para potenciar los resultados. En la evaluación diseñamos protocolos personalizados que pueden incluir múltiples técnicas de forma segura y efectiva."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo veo resultados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los resultados varían según el tratamiento. Algunos como cavitación muestran cambios desde la primera sesión, mientras que otros como PRP requieren 2-3 sesiones para ver mejoras significativas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué formas de pago aceptan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aceptamos efectivo, tarjetas de crédito y débito, transferencias bancarias. También ofrecemos planes de pago y paquetes con descuentos especiales para múltiples sesiones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Quién realiza los procedimientos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Todos nuestros tratamientos son realizados por profesionales certificados con más de 15 años de experiencia en medicina estética. Nuestro equipo se mantiene constantemente actualizado en las últimas técnicas y tecnologías."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://centroestetica.cl/#website",
+      "url": "https://centroestetica.cl",
+      "name": "Centro de Estética Premium Santiago",
+      "description": "Centro de estética especializado en tratamientos no invasivos en Santiago de Chile",
+      "publisher": {
+        "@id": "https://centroestetica.cl/#medicalbusiness"
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://centroestetica.cl/buscar?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://centroestetica.cl/#organization",
+      "name": "Centro de Estética Premium",
+      "url": "https://centroestetica.cl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://centroestetica.cl/logo.png",
+        "width": 300,
+        "height": 100
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+56223456789",
+          "contactType": "customer service",
+          "availableLanguage": "Spanish",
+          "areaServed": "CL"
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+56912345678",
+          "contactType": "customer service",
+          "availableLanguage": "Spanish",
+          "areaServed": "CL",
+          "contactOption": "WhatsApp"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/centroestetica",
+        "https://www.facebook.com/centroestetica"
+      ]
+    }
+  ]
+}
