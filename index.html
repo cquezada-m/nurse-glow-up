@@ -232,7 +232,7 @@
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#contacto"
-                class="px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl"
+                class="px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl pulse-glow"
                 style="
                   background: var(--gradient-primary);
                   border: none;
@@ -300,33 +300,31 @@
     </div>
 
     <!-- Benefits Section -->
-    <section class="benefits" data-gtm-event="view_benefits">
-      <div class="container">
-        <div class="section-header">
-          <h2>¿Por qué elegir Nurse Glow Up?</h2>
-          <p>Beneficios que marcan la diferencia en tu experiencia</p>
+    <section class="benefits fade-in-up" data-gtm-event="view_benefits">
+      <div class="section-header fade-in-up">
+        <h2>¿Por qué elegir Nurse Glow Up?</h2>
+        <p>Beneficios que marcan la diferencia en tu experiencia</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-in-up">
+          <div class="benefit-icon">1</div>
+          <h3>Reduce grasa localizada</h3>
+          <p>Elimina grasa rebelde en abdomen, muslos y brazos sin cirugía</p>
         </div>
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <div class="benefit-icon">1</div>
-            <h3>Reduce grasa localizada</h3>
-            <p>Elimina grasa rebelde en abdomen, muslos y brazos sin cirugía</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">2</div>
-            <h3>Reafirma y tonifica</h3>
-            <p>Mejora la firmeza de tu piel y define tu contorno corporal</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">3</div>
-            <h3>Rejuvenece con PRP</h3>
-            <p>Regenera tu piel con tu propio plasma, naturalmente</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">4</div>
-            <h3>Resultados sin cirugía</h3>
-            <p>Tecnología no invasiva, sin tiempo de reposo ni molestias</p>
-          </div>
+        <div class="benefit-card fade-in-up">
+          <div class="benefit-icon">2</div>
+          <h3>Reafirma y tonifica</h3>
+          <p>Mejora la firmeza de tu piel y define tu contorno corporal</p>
+        </div>
+        <div class="benefit-card fade-in-up">
+          <div class="benefit-icon">3</div>
+          <h3>Rejuvenece con PRP</h3>
+          <p>Regenera tu piel con tu propio plasma, naturalmente</p>
+        </div>
+        <div class="benefit-card fade-in-up">
+          <div class="benefit-icon">4</div>
+          <h3>Resultados sin cirugía</h3>
+          <p>Tecnología no invasiva, sin tiempo de reposo ni molestias</p>
         </div>
       </div>
     </section>
@@ -346,7 +344,10 @@
           </p>
         </div>
         <div class="services-detailed-grid">
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
+            <div class="benefit-badges">
+              <span class="badge badge-popular">Más Popular</span>
+            </div>
             <div class="service-number">01</div>
             <h3>Mesoterapia</h3>
             <p class="service-tagline">Moldea zonas rebeldes sin cirugía</p>
@@ -362,7 +363,10 @@
             </button>
           </div>
 
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
+            <div class="benefit-badges">
+              <span class="badge badge-recommended">Recomendado</span>
+            </div>
             <div class="service-number">02</div>
             <h3>Plasma Rico en Plaquetas (PRP)</h3>
             <p class="service-tagline">Regeneración con tu propio plasma</p>
@@ -375,7 +379,10 @@
             </button>
           </div>
 
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
+            <div class="benefit-badges">
+              <span class="badge badge-new">Nuevo</span>
+            </div>
             <div class="service-number">03</div>
             <h3>Lipoláser</h3>
             <p class="service-tagline">Define tu figura sin dolor</p>
@@ -391,7 +398,7 @@
             </button>
           </div>
 
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
             <div class="service-number">04</div>
             <h3>Radiofrecuencia</h3>
             <p class="service-tagline">Piel más firme y elástica</p>
@@ -407,7 +414,7 @@
             </button>
           </div>
 
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
             <div class="service-number">05</div>
             <h3>Cavitación</h3>
             <p class="service-tagline">Adiós a la grasa localizada</p>
@@ -423,7 +430,7 @@
             </button>
           </div>
 
-          <div class="service-detailed-card">
+          <div class="service-detailed-card fade-in-up">
             <div class="service-number">06</div>
             <h3>Vacumterapia</h3>
             <p class="service-tagline">Moldea y detox al mismo tiempo</p>
@@ -445,14 +452,17 @@
           <div class="cta-content-simple">
             <h3>¿Tienes dudas sobre cuál tratamiento elegir?</h3>
             <p>Agenda tu consulta gratuita y te ayudamos a decidir</p>
-            <button
-              class="cta-primary"
-              data-gtm-event="click_cta_offer"
-              data-gtm-cta="secondary"
-              data-gtm-location="services"
-            >
-              Consulta sin compromiso
-            </button>
+            <div class="cta-buttons-group">
+              <button
+                class="cta-primary"
+                data-gtm-event="click_cta_offer"
+                data-gtm-cta="secondary"
+                data-gtm-location="services"
+                onclick="document.getElementById('contacto').scrollIntoView()"
+              >
+                Consulta sin compromiso
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -563,9 +573,9 @@
     -->
 
     <!-- Gallery Section -->
-    <section class="gallery">
+    <section class="gallery fade-in-up" data-gtm-event="view_gallery">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header fade-in-up">
           <h2>Así trabajamos en Nurse Glow Up</h2>
           <p>
             Mira nuestros tratamientos en acción y conoce la experiencia
@@ -575,71 +585,95 @@
 
         <!-- Instagram Reels Grid -->
         <div class="instagram-reels-grid">
-          <!-- Reel 1 - Reemplaza con tu URL de Instagram -->
-          <div class="reel-container">
-            <blockquote
-              class="instagram-media"
-              data-instgrm-permalink="https://www.instagram.com/reel/DOWPjtcDi1W/?utm_source=ig_embed&amp;utm_campaign=loading"
-              data-instgrm-version="14"
-            >
-              <div class="reel-placeholder">
-                <div class="reel-play-button">▶</div>
-                <img src="images/lipolaser.png" alt="Lipoláser" />
-                <div class="reel-overlay">
-                  <h4>Lipoláser: moldea tu figura sin cirugía</h4>
-                  <p>Ver proceso completo</p>
-                </div>
+          <!-- Reel 1 -->
+          <a
+            href="https://www.instagram.com/reel/DOWPjtcDi1W/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reel-container"
+            data-treatment="lipolaser"
+            data-reel-id="DOWPjtcDi1W"
+            data-gtm-event="click_reel"
+            data-gtm-treatment="lipolaser"
+            data-gtm-location="gallery"
+          >
+            <div class="reel-placeholder">
+              <div class="reel-play-button">▶</div>
+              <img src="images/lipolaser.png" alt="Lipoláser" loading="lazy" />
+              <div class="reel-overlay">
+                <h4>Lipoláser: moldea tu figura sin cirugía</h4>
+                <p>Ver proceso completo</p>
               </div>
-            </blockquote>
-          </div>
+            </div>
+          </a>
 
           <!-- Reel 2 -->
-          <div class="reel-container">
-            <blockquote
-              class="instagram-media"
-              data-instgrm-permalink="https://www.instagram.com/reel/DOgjmoLDnt4/?utm_source=ig_embed&amp;utm_campaign=loading"
-              data-instgrm-version="14"
-            >
-              <div class="reel-placeholder">
-                <div class="reel-play-button">▶</div>
-                <img src="images/masoterapia.png" alt="Mesoterapia" />
-                <div class="reel-overlay">
-                  <h4>✨ ¡Dile adiós a la papada sin cirugía! ✨</h4>
-                  <p>Ver proceso completo</p>
-                </div>
+          <a
+            href="https://www.instagram.com/reel/DOgjmoLDnt4/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reel-container"
+            data-treatment="mesoterapia"
+            data-reel-id="DOgjmoLDnt4"
+            data-gtm-event="click_reel"
+            data-gtm-treatment="mesoterapia"
+            data-gtm-location="gallery"
+          >
+            <div class="reel-placeholder">
+              <div class="reel-play-button">▶</div>
+              <img
+                src="images/masoterapia.png"
+                alt="Mesoterapia"
+                loading="lazy"
+              />
+              <div class="reel-overlay">
+                <h4>✨ ¡Dile adiós a la papada sin cirugía! ✨</h4>
+                <p>Ver proceso completo</p>
               </div>
-            </blockquote>
-          </div>
+            </div>
+          </a>
 
           <!-- Reel 3 -->
-          <div class="reel-container">
-            <blockquote
-              class="instagram-media"
-              data-instgrm-permalink="https://www.instagram.com/reel/AQUI_TU_REEL_ID_3/?utm_source=ig_embed&amp;utm_campaign=loading"
-              data-instgrm-version="14"
-            >
-              <div class="reel-placeholder">
-                <div class="reel-play-button">▶</div>
-                <img src="images/cavitacion.png" alt="Cavitación" />
-                <div class="reel-overlay">
-                  <h4>
-                    La cavitación y la radiofrecuencia son tus aliadas para
-                    moldear tu figura y tonificar tu piel ✨
-                  </h4>
-                  <p>Ver proceso completo</p>
-                </div>
+          <a
+            href="https://www.instagram.com/nurse.glow.up/reel/DObe5TSjqje"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reel-container"
+            data-treatment="cavitacion"
+            data-reel-id="DObe5TSjqje"
+            data-gtm-event="click_reel"
+            data-gtm-treatment="cavitacion"
+            data-gtm-location="gallery"
+          >
+            <div class="reel-placeholder">
+              <div class="reel-play-button">▶</div>
+              <img
+                src="images/cavitacion.png"
+                alt="Cavitación"
+                loading="lazy"
+              />
+              <div class="reel-overlay">
+                <h4>
+                  La cavitación y la radiofrecuencia son tus aliadas para
+                  moldear tu figura y tonificar tu piel ✨
+                </h4>
+                <p>Ver proceso completo</p>
               </div>
-            </blockquote>
-          </div>
+            </div>
+          </a>
         </div>
 
         <!-- Call to Action para Instagram -->
-        <div class="instagram-cta">
+        <div class="instagram-cta fade-in-up">
           <p>¿Quieres ver más? Síguenos en Instagram</p>
           <a
             href="https://instagram.com/nurse.glow.up"
             target="_blank"
+            rel="noopener noreferrer"
             class="instagram-button"
+            data-gtm-event="click_instagram_profile"
+            data-gtm-location="gallery_cta"
+            data-gtm-action="external_link"
           >
             <span>@nurse.glow.up</span>
           </a>
@@ -818,51 +852,88 @@
               gratuita.
             </p>
           </div>
-          <form
-            id="leadForm"
-            class="contact-form-grid"
-            data-gtm-event="submit_form"
-          >
-            <div class="form-group full-width">
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Nombre completo"
-                required
-              />
+          <form id="leadForm" class="smart-form" data-gtm-event="submit_form">
+            <!-- Progress Bar -->
+            <div class="form-progress">
+              <div class="form-progress-bar" id="progressBar"></div>
             </div>
-            <div class="form-group">
-              <select id="servicio" name="servicio" required>
-                <option value="">Selecciona un servicio</option>
-                <option value="mesoterapia">Mesoterapia</option>
-                <option value="prp">Plasma Rico en Plaquetas (PRP)</option>
-                <option value="lipolaser">Lipoláser</option>
-                <option value="radiofrecuencia">Radiofrecuencia</option>
-                <option value="cavitacion">Cavitación</option>
-                <option value="vacumterapia">Vacumterapia</option>
-              </select>
+
+            <!-- Step 1: Nombre -->
+            <div class="step active" data-step="1">
+              <div class="form-group full-width">
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="¿Cómo te llamas?"
+                  required
+                />
+                <button
+                  type="button"
+                  class="next-step mt-4"
+                  onclick="nextStep(2)"
+                >
+                  Continuar
+                </button>
+              </div>
             </div>
-            <div class="form-group">
-              <select id="horario" name="horario">
-                <option value="">Horario preferido</option>
-                <option value="manana">Mañana (9:00 - 12:00)</option>
-                <option value="tarde">Tarde (14:00 - 18:00)</option>
-                <option value="flexible">Horario flexible</option>
-              </select>
+
+            <!-- Step 2: Servicio -->
+            <div class="step" data-step="2">
+              <div class="form-group full-width">
+                <select id="servicio" name="servicio" required>
+                  <option value="">¿Qué tratamiento te interesa?</option>
+                  <option value="mesoterapia">Mesoterapia</option>
+                  <option value="prp">Plasma Rico en Plaquetas (PRP)</option>
+                  <option value="lipolaser">Lipoláser</option>
+                  <option value="radiofrecuencia">Radiofrecuencia</option>
+                  <option value="cavitacion">Cavitación</option>
+                  <option value="vacumterapia">Vacumterapia</option>
+                </select>
+                <button
+                  type="button"
+                  class="next-step mt-4"
+                  onclick="nextStep(3)"
+                >
+                  Continuar
+                </button>
+              </div>
             </div>
-            <div class="form-group full-width">
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                placeholder="Mensaje (opcional)"
-                rows="3"
-              ></textarea>
+
+            <!-- Step 3: Horario -->
+            <div class="step" data-step="3">
+              <div class="form-group full-width">
+                <select id="horario" name="horario">
+                  <option value="">¿Cuál es tu horario preferido?</option>
+                  <option value="manana">Mañana (9:00 - 12:00)</option>
+                  <option value="tarde">Tarde (14:00 - 18:00)</option>
+                  <option value="flexible">Horario flexible</option>
+                </select>
+                <button
+                  type="button"
+                  class="next-step mt-4"
+                  onclick="nextStep(4)"
+                >
+                  Continuar
+                </button>
+              </div>
             </div>
-            <div class="form-group full-width">
-              <button type="submit" class="cta-primary">
-                Reserva tu evaluación gratuita
-              </button>
+
+            <!-- Step 4: Mensaje y Submit -->
+            <div class="step" data-step="4">
+              <div class="form-group full-width">
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  placeholder="¿Algo más que quieras contarnos? (opcional)"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="form-group full-width">
+                <button type="submit" class="cta-primary">
+                  🎉 Reserva tu evaluación gratuita
+                </button>
+              </div>
             </div>
             <div
               id="form-success"
@@ -1293,16 +1364,28 @@
     </footer>
 
     <!-- WhatsApp Sticky Button -->
-    <div class="whatsapp-sticky">
+    <div class="whatsapp-sticky pulse" id="whatsappSticky">
       <a
-        href="https://wa.me/56975730668?text=Hola%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20gratuita"
+        href="#"
         target="_blank"
         rel="noopener"
         data-gtm-event="click_whatsapp"
         data-gtm-location="sticky"
         aria-label="Contactar por WhatsApp"
+        onclick="sendWhatsAppMessage(event)"
       >
-        <img src="images/whatsapp.png" alt="WhatsApp" />
+        <svg
+          width="38"
+          height="38"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516"
+            fill="white"
+          />
+        </svg>
       </a>
     </div>
 
@@ -1317,11 +1400,35 @@
       </div>
     </div>
 
+    <!-- Social Proof Popup -->
+    <div class="social-proof-popup" id="socialProof">
+      <div class="popup-content">
+        <div class="popup-avatar">👩</div>
+        <div class="popup-text">
+          <strong id="popup-name">María José</strong> de
+          <span id="popup-location">Las Condes</span><br />
+          <small
+            >Reservó evaluación hace <span id="popup-time">3 min</span></small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta" id="mobileCTA">
+      <div class="cta-content">
+        <div class="cta-text">¡Reserva tu evaluación gratuita!</div>
+        <button
+          class="cta-button"
+          onclick="document.getElementById('contacto').scrollIntoView()"
+        >
+          Reservar Ahora
+        </button>
+      </div>
+    </div>
+
     <!-- Scripts -->
     <script src="script.js"></script>
-
-    <!-- Instagram Embed Script -->
-    <script async src="//www.instagram.com/embed.js"></script>
 
     <!-- Element.js -->
     <script
