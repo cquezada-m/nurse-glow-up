@@ -17,7 +17,7 @@ Landing page de alto rendimiento para Nurse Glow Up, centro de estética especia
 
 - **Headline optimizado**: "Tu figura, más definida. Tu piel, más firme."
 - **6 servicios especializados**: Mesoterapia, PRP, Lipoláser, Radiofrecuencia, Cavitación, Vacumterapia
-- **Oferta irresistible**: Evaluación GRATUITA + 25% OFF primer tratamiento
+- **Oferta irresistible**: Evaluación GRATUITA + 20% OFF primer tratamiento
 - **Prueba social**: +850 pacientes transformadas • Rating 4.9/5
 - **Ubicación estratégica**: Metro Santa Lucía, Santiago Centro
 - **WhatsApp directo**: +56975730668 con mensaje pre-cargado
@@ -36,7 +36,7 @@ Landing page de alto rendimiento para Nurse Glow Up, centro de estética especia
 
 - **20+ eventos GTM documentados** según GTM_EVENTS_DOCUMENTATION.md
 - **Tracking completo**: page_view, view_hero, view_services, view_testimonials, view_faq, view_offer_bar
-- **Eventos de interacción**: click_cta_hero, click_whatsapp, click_service_*, click_faq, click_anchor
+- **Eventos de interacción**: click*cta_hero, click_whatsapp, click_service*\*, click_faq, click_anchor
 - **Formulario avanzado**: submit_form, form_error, conversion_lead con validación completa
 - **Comportamiento**: scroll_progress (25%, 50%, 75%, 100%), exit_intent, page_hidden/visible
 - **Performance**: page_performance con métricas LCP, DOM ready, first paint
@@ -257,6 +257,7 @@ nurse-glow-up/
 ## ✅ Estado Actual del Proyecto
 
 ### Completado (100%)
+
 - ✅ **26 eventos GTM** implementados según documentación
 - ✅ **Todos los botones funcionando** correctamente
 - ✅ **Formulario validado** con tracking completo de errores
@@ -268,6 +269,7 @@ nurse-glow-up/
 - ✅ **Responsive design** mobile-first optimizado
 
 ### Archivos de Referencia
+
 - 📄 `GTM_IMPLEMENTATION_STATUS.md` - Estado completo de eventos GTM
 - 📄 `GTM_EVENTS_DOCUMENTATION.md` - Documentación técnica completa
 - 📄 `README.md` - Este archivo con información del proyecto
@@ -277,6 +279,7 @@ nurse-glow-up/
 **Status: ✅ PRODUCTION READY**
 
 El landing está completamente funcional con:
+
 - **CVR objetivo**: ≥ 6% (optimizado con mejores prácticas CRO)
 - **Performance**: LCP < 2.5s móvil
 - **Tracking**: 100% de eventos documentados implementados

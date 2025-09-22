@@ -457,3 +457,67 @@ setTimeout(() => {
     timestamp: new Date().toISOString(),
   });
 }, 1000);
+
+// Typewriter Effect
+function initTypewriter() {
+  const typewriterElement = document.querySelector('.typewriter-word');
+  if (!typewriterElement) return;
+
+  const words = typewriterElement.getAttribute('data-words').split(',');
+  let currentWordIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let typeSpeed = 120;
+  let deleteSpeed = 80;
+  let pauseTime = 2500;
+
+  function type() {
+    const currentWord = words[currentWordIndex];
+    
+    if (isDeleting) {
+      // Deleting characters
+      typewriterElement.textContent = currentWord.substring(0, currentCharIndex - 1);
+      currentCharIndex--;
+      
+      if (currentCharIndex === 0) {
+        isDeleting = false;
+        currentWordIndex = (currentWordIndex + 1) % words.length;
+        setTimeout(type, 500); // Pause before typing next word
+        return;
+      }
+      
+      setTimeout(type, deleteSpeed);
+    } else {
+      // Typing characters
+      typewriterElement.textContent = currentWord.substring(0, currentCharIndex + 1);
+      currentCharIndex++;
+      
+      if (currentCharIndex === currentWord.length) {
+        // Word complete, track the word display
+        gtmTrack("typewriter_word_complete", {
+          word: currentWord,
+          word_index: currentWordIndex,
+          timestamp: new Date().toISOString(),
+        });
+        
+        // Pause then start deleting
+        setTimeout(() => {
+          isDeleting = true;
+          type();
+        }, pauseTime);
+        return;
+      }
+      
+      setTimeout(type, typeSpeed);
+    }
+  }
+
+  // Start the typewriter effect after a delay
+  setTimeout(() => {
+    typewriterElement.classList.add('typing');
+    type();
+  }, 2000);
+}
+
+// Initialize typewriter when DOM is loaded
+document.addEventListener('DOMContentLoaded', initTypewriter);
