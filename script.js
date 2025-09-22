@@ -266,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
           JSON.stringify(formDataForWhatsApp)
         );
 
+        // Reset inicial del formulario (visual)
         leadForm.reset();
 
         // Track conversion
@@ -278,6 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Usar la nueva función mejorada de WhatsApp
         setTimeout(() => {
           sendWhatsAppMessage();
+          // Nota: sendWhatsAppMessage() ya incluye el reseteo completo después de 3 segundos
         }, 2000);
       }, 1000);
     });
@@ -1517,6 +1519,21 @@ function sendWhatsAppMessage(event) {
     sessionStorage.removeItem("whatsappFormData");
     console.log("Datos de WhatsApp limpiados de sessionStorage");
   }, 1000);
+
+  // Resetear formulario después de 3 segundos
+  setTimeout(() => {
+    clearFormData();
+    console.log(
+      "✅ Formulario reseteado automáticamente después de abrir WhatsApp"
+    );
+
+    // Tracking del reset automático
+    gtmTrack("form_auto_reset", {
+      trigger: "whatsapp_sent",
+      delay_seconds: 3,
+      timestamp: new Date().toISOString(),
+    });
+  }, 3000);
 
   // Animación de feedback
   const whatsappButton = document.getElementById("whatsappSticky");
