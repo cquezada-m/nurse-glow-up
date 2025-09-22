@@ -3,13 +3,13 @@
   "@graph": [
     {
       "@type": "MedicalBusiness",
-      "@id": "https://centroestetica.cl/#medicalbusiness",
-      "name": "Centro de Estética Premium",
-      "alternateName": "Centro Estética Santiago",
+      "@id": "https://nurseglowup.cl/#medicalbusiness",
+      "name": "Nurse Glow Up",
+      "alternateName": "Centro Estética Nurse Glow Up Santiago",
       "description": "Centro de estética especializado en tratamientos no invasivos como mesoterapia, PRP, lipoláser, radiofrecuencia, cavitación y vacumterapia en Santiago de Chile.",
-      "url": "https://centroestetica.cl",
+      "url": "https://nurseglowup.cl",
       "telephone": "+56223456789",
-      "email": "info@centroestetica.cl",
+      "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Providencia 1234",
@@ -41,19 +41,19 @@
       "currenciesAccepted": "CLP",
       "paymentAccepted": "Cash, Credit Card, Debit Card, Bank Transfer",
       "image": [
-        "https://centroestetica.cl/images/centro-exterior.jpg",
-        "https://centroestetica.cl/images/sala-tratamientos.jpg",
-        "https://centroestetica.cl/images/equipo-medico.jpg"
+        "https://nurseglowup.cl/images/centro-exterior.jpg",
+        "https://nurseglowup.cl/images/sala-tratamientos.jpg",
+        "https://nurseglowup.cl/images/equipo-medico.jpg"
       ],
       "logo": {
         "@type": "ImageObject",
-        "url": "https://centroestetica.cl/logo.png",
+        "url": "https://nurseglowup.cl/logo.png",
         "width": 300,
         "height": 100
       },
       "sameAs": [
-        "https://www.instagram.com/centroestetica",
-        "https://www.facebook.com/centroestetica"
+        "https://www.instagram.com/nurseglowup",
+        "https://www.facebook.com/nurseglowup"
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -178,11 +178,11 @@
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://centroestetica.cl/#localbusiness",
-      "name": "Centro de Estética Premium",
-      "image": "https://centroestetica.cl/images/centro-exterior.jpg",
+      "@id": "https://nurseglowup.cl/#localbusiness",
+      "name": "Nurse Glow Up",
+      "image": "https://nurseglowup.cl/images/centro-exterior.jpg",
       "telephone": "+56223456789",
-      "email": "info@centroestetica.cl",
+      "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Providencia 1234",
@@ -196,7 +196,7 @@
         "latitude": -33.4372,
         "longitude": -70.6506
       },
-      "url": "https://centroestetica.cl",
+      "url": "https://nurseglowup.cl",
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -215,7 +215,7 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://centroestetica.cl/#faqpage",
+      "@id": "https://nurseglowup.cl/#faqpage",
       "mainEntity": [
         {
           "@type": "Question",
@@ -285,19 +285,19 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://centroestetica.cl/#website",
-      "url": "https://centroestetica.cl",
-      "name": "Centro de Estética Premium Santiago",
+      "@id": "https://nurseglowup.cl/#website",
+      "url": "https://nurseglowup.cl",
+      "name": "Nurse Glow Up Santiago",
       "description": "Centro de estética especializado en tratamientos no invasivos en Santiago de Chile",
       "publisher": {
-        "@id": "https://centroestetica.cl/#medicalbusiness"
+        "@id": "https://nurseglowup.cl/#medicalbusiness"
       },
       "potentialAction": [
         {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://centroestetica.cl/buscar?q={search_term_string}"
+            "urlTemplate": "https://nurseglowup.cl/buscar?q={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         }
@@ -305,12 +305,12 @@
     },
     {
       "@type": "Organization",
-      "@id": "https://centroestetica.cl/#organization",
-      "name": "Centro de Estética Premium",
-      "url": "https://centroestetica.cl",
+      "@id": "https://nurseglowup.cl/#organization",
+      "name": "Nurse Glow Up",
+      "url": "https://nurseglowup.cl",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://centroestetica.cl/logo.png",
+        "url": "https://nurseglowup.cl/logo.png",
         "width": 300,
         "height": 100
       },
@@ -332,8 +332,8 @@
         }
       ],
       "sameAs": [
-        "https://www.instagram.com/centroestetica",
-        "https://www.facebook.com/centroestetica"
+        "https://www.instagram.com/nurseglowup",
+        "https://www.facebook.com/nurseglowup"
       ]
     }
   ]

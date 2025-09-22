@@ -10,27 +10,81 @@ function gtmTrack(eventName, eventData = {}) {
   console.log("GTM Event:", eventName, eventData);
 }
 
-// Intersection Observer for view events
+// Intersection Observer for view events and animations
 const observerOptions = {
-  threshold: 0.5,
-  rootMargin: "0px 0px -100px 0px",
+  threshold: 0.3,
+  rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       const element = entry.target;
-      const eventName = element.getAttribute("data-gtm-event");
+      
+      // GTM Tracking
+      const eventName = element.getAttribute('data-gtm-event');
       if (eventName) {
         gtmTrack(eventName, {
           section: element.tagName.toLowerCase(),
-          timestamp: new Date().toISOString(),
+          timestamp: new Date().toISOString()
         });
         observer.unobserve(element); // Only track once
       }
+      
+      // Animate elements
+      animateOnScroll(element);
     }
   });
 }, observerOptions);
+
+// Animation on scroll function
+function animateOnScroll(element) {
+  // Animate benefit items
+  if (element.classList.contains('benefits')) {
+    const benefitItems = element.querySelectorAll('.benefit-item');
+    benefitItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+        item.style.transition = 'all 0.6s ease-out';
+      }, index * 150);
+    });
+  }
+  
+  // Animate service cards
+  if (element.classList.contains('services')) {
+    const serviceCards = element.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+        card.style.transition = 'all 0.6s ease-out';
+      }, index * 100);
+    });
+  }
+  
+  // Animate testimonials
+  if (element.classList.contains('testimonials')) {
+    const testimonials = element.querySelectorAll('.testimonial');
+    testimonials.forEach((testimonial, index) => {
+      setTimeout(() => {
+        testimonial.style.opacity = '1';
+        testimonial.style.transform = 'translateY(0)';
+        testimonial.style.transition = 'all 0.6s ease-out';
+      }, index * 200);
+    });
+  }
+  
+  // Animate form
+  if (element.classList.contains('lead-form')) {
+    const form = element.querySelector('#leadForm');
+    if (form) {
+      form.style.opacity = '1';
+      form.style.transform = 'translateY(0)';
+      form.style.transition = 'all 0.8s ease-out';
+    }
+  }
+}
 
 // DOM Content Loaded
 document.addEventListener("DOMContentLoaded", function () {

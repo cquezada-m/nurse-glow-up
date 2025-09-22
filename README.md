@@ -14,6 +14,7 @@ Landing page optimizada para conversión de un centro de estética en Santiago d
 ## 🚀 Características Principales
 
 ### ✅ Marketing & CRO
+
 - Copywriting orientado a resultados en español chileno
 - 6 servicios con microcopy específico
 - Oferta limitada con urgencia (20% OFF + evaluación gratuita)
@@ -22,6 +23,7 @@ Landing page optimizada para conversión de un centro de estética en Santiago d
 - WhatsApp sticky button
 
 ### ✅ SEO & Performance
+
 - HTML semántico optimizado
 - Meta tags completos (OG, Twitter Cards)
 - JSON-LD schema markup (MedicalBusiness, FAQPage, LocalBusiness)
@@ -30,6 +32,7 @@ Landing page optimizada para conversión de un centro de estética en Santiago d
 - Mobile-first responsive design
 
 ### ✅ Analytics & Tracking
+
 - 25+ eventos GTM implementados
 - Tracking completo del customer journey
 - Validación de formulario con tracking de errores
@@ -37,6 +40,7 @@ Landing page optimizada para conversión de un centro de estética en Santiago d
 - Scroll tracking y exit intent
 
 ### ✅ UX/UI
+
 - Diseño moderno con paleta profesional
 - Componentes accesibles (WCAG AA)
 - Navegación intuitiva
@@ -58,6 +62,7 @@ nurse-glow-up/
 ## 🛠️ Instalación y Configuración
 
 ### 1. Configuración Básica
+
 ```bash
 # Clonar o descargar los archivos
 # Subir a servidor web o abrir index.html localmente
@@ -66,6 +71,7 @@ nurse-glow-up/
 ### 2. Personalización Requerida
 
 #### Datos del Centro (Reemplazar en todos los archivos):
+
 - `[Nombre del Centro]` → Nombre real del centro
 - `[Comuna]` → Comuna específica
 - `+56 9 XXXXX XXXX` → WhatsApp real
@@ -74,6 +80,7 @@ nurse-glow-up/
 - `Av. Providencia 1234` → Dirección real
 
 #### Imágenes a Reemplazar:
+
 - Hero image (600x400px)
 - Antes/después (300x400px cada una)
 - Logo (300x100px)
@@ -83,15 +90,17 @@ nurse-glow-up/
 ### 3. Configuración GTM
 
 #### Variables Necesarias:
+
 ```
 - DLV - Event Name
-- DLV - CTA Type  
+- DLV - CTA Type
 - DLV - Service Type
 - DLV - Form Data
 - DLV - Timestamp
 ```
 
 #### Triggers Principales:
+
 ```
 - Custom Event: submit_form
 - Custom Event: click_cta_hero
@@ -100,6 +109,7 @@ nurse-glow-up/
 ```
 
 #### Tags Recomendados:
+
 ```
 - GA4 Event Tag
 - Meta Pixel Event Tag
@@ -109,11 +119,13 @@ nurse-glow-up/
 ### 4. Configuración de Analytics
 
 #### Google Analytics 4:
+
 - Configurar eventos de conversión
 - Establecer objetivos de formulario
 - Configurar audiencias por servicio de interés
 
 #### Meta Pixel:
+
 - Evento ViewContent en hero
 - Evento Lead en formulario
 - Custom Conversions por servicio
@@ -121,6 +133,7 @@ nurse-glow-up/
 ## 📱 Testing y QA
 
 ### Checklist Pre-Launch:
+
 - [ ] Todos los datos personalizados actualizados
 - [ ] WhatsApp funciona correctamente
 - [ ] Formulario envía y valida
@@ -130,6 +143,7 @@ nurse-glow-up/
 - [ ] Accesibilidad básica (contraste, navegación por teclado)
 
 ### Herramientas de Testing:
+
 - Google PageSpeed Insights
 - GTM Preview Mode
 - Google Tag Assistant
@@ -139,26 +153,31 @@ nurse-glow-up/
 ## 🎨 Personalización de Diseño
 
 ### Colores Principales:
+
 ```css
---primary-color: #6A1B9A;    /* Lila profesional */
---primary-light: #8E24AA;    /* Lila claro */
---accent-color: #FF6B6B;     /* Rojo para ofertas */
---text-dark: #2D3748;        /* Texto principal */
---bg-light: #F7FAFC;         /* Fondo claro */
+--primary-color: #6a1b9a; /* Lila profesional */
+--primary-light: #8e24aa; /* Lila claro */
+--accent-color: #ff6b6b; /* Rojo para ofertas */
+--text-dark: #2d3748; /* Texto principal */
+--bg-light: #f7fafc; /* Fondo claro */
 ```
 
 ### Tipografía:
+
 - Font principal: Inter
 - Fallbacks: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto
 
 ## 📈 Optimización Continua
 
 ### A/B Testing Sugerido:
+
 1. **Hero Headlines**:
+
    - A: "Transforma tu cuerpo y rejuvenece tu piel con tecnología no invasiva"
    - B: "Tu figura, más definida. Tu piel, más firme. Protocolos expertos en Santiago"
 
 2. **CTAs Principales**:
+
    - A: "Reserva tu evaluación gratuita"
    - B: "Agendar por WhatsApp"
 
@@ -167,6 +186,7 @@ nurse-glow-up/
    - B: Video corto (6-10s)
 
 ### Métricas a Monitorear:
+
 - Tasa de conversión por fuente de tráfico
 - Abandono por sección del formulario
 - Clicks por servicio específico
@@ -176,6 +196,7 @@ nurse-glow-up/
 ## 🔧 Mantenimiento
 
 ### Actualizaciones Mensuales:
+
 - [ ] Actualizar fecha de oferta
 - [ ] Revisar testimonios y agregar nuevos
 - [ ] Actualizar contador de pacientes atendidos
@@ -183,6 +204,7 @@ nurse-glow-up/
 - [ ] Revisar métricas de conversión
 
 ### Actualizaciones Trimestrales:
+
 - [ ] Nuevas imágenes antes/después
 - [ ] Actualizar precios si aplica
 - [ ] Revisar y actualizar FAQ
@@ -193,16 +215,19 @@ nurse-glow-up/
 ### Problemas Comunes:
 
 **Formulario no envía:**
+
 - Verificar validación JavaScript
 - Comprobar campos requeridos
 - Revisar formato WhatsApp
 
 **GTM no trackea:**
+
 - Verificar GTM container ID
 - Comprobar triggers en Preview Mode
 - Validar data layer events
 
 **Performance lenta:**
+
 - Optimizar imágenes (WebP/AVIF)
 - Verificar CDN de Tailwind
 - Revisar scripts de terceros
@@ -210,6 +235,7 @@ nurse-glow-up/
 ## 📄 Cumplimiento Legal (Chile)
 
 ### Incluido:
+
 - ✅ Disclaimer médico
 - ✅ Consentimiento de datos
 - ✅ Enlaces a términos y privacidad
@@ -217,6 +243,7 @@ nurse-glow-up/
 - ✅ Sin promesas absolutas de resultados
 
 ### Pendiente de Implementar:
+
 - [ ] Política de privacidad específica
 - [ ] Términos y condiciones
 - [ ] Registro en SEREMI si aplica
