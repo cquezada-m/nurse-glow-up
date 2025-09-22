@@ -558,32 +558,119 @@ p {
   letter-spacing: -0.02em;
 }
 
+.hero-trust-indicators {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.trust-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.trust-text {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+}
+
 .hero-subtitle {
   font-size: 1.25rem;
   color: var(--text-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   line-height: 1.6;
-  max-width: 90%;
+  max-width: 95%;
+}
+
+.hero-subtitle strong {
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .hero-benefits {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: var(--text-dark);
   font-weight: 500;
+}
+
+.benefit-check {
+  color: #10B981;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .hero-ctas {
   display: flex;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
+}
+
+.cta-primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 2rem;
+}
+
+.cta-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.cta-subtext {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.cta-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.whatsapp-icon {
+  font-size: 1.2rem;
+}
+
+.hero-guarantee {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-guarantee p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  text-align: center;
 }
 
 .hero-image {
@@ -617,38 +704,66 @@ p {
   background: white;
   padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  min-width: 240px;
   animation: float 3s ease-in-out infinite;
 }
 
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 .card-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background: var(--gradient-primary);
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
-.card-content h4 {
-  font-size: 1rem;
+.card-title {
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-dark);
-  margin: 0 0 0.25rem 0;
 }
 
-.card-content p {
-  font-size: 0.875rem;
+.card-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
   color: var(--text-light);
-  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.card-location {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-align: center;
 }
 
 /* Benefits Section - Minimalist */
@@ -1404,10 +1519,10 @@ p {
   border-radius: 20px;
 }
 
-/* Gallery Section */
+/* Gallery Section - Instagram Reels */
 .gallery {
   padding: 6rem 0;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 .gallery-header {
@@ -1416,37 +1531,143 @@ p {
 }
 
 .gallery-header h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--text-dark);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
-.gallery-grid {
+.gallery-header p {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.instagram-reels-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  max-width: 1000px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
 }
 
-.gallery-item {
-  border-radius: 15px;
+.reel-container {
+  position: relative;
+  border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 1;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  cursor: pointer;
 }
 
-.gallery-item img {
+.reel-container:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.reel-placeholder {
+  position: relative;
+  aspect-ratio: 9/16;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+}
+
+.reel-placeholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: var(--transition-normal);
 }
 
-.gallery-item:hover img {
-  transform: scale(1.1);
+.reel-container:hover .reel-placeholder img {
+  transform: scale(1.05);
+}
+
+.reel-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  z-index: 2;
+  transition: var(--transition-normal);
+}
+
+.reel-container:hover .reel-play-button {
+  background: white;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.reel-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+}
+
+.reel-overlay h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.reel-overlay p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.instagram-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(225, 29, 72, 0.05);
+  border-radius: 20px;
+  border: 2px solid rgba(225, 29, 72, 0.1);
+}
+
+.instagram-cta p {
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.instagram-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #E1306C, #FD1D1D, #F77737, #FCAF45);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.instagram-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: white;
+}
+
+.instagram-icon {
+  font-size: 1.25rem;
 }
 
 /* Contact Form */
@@ -2022,9 +2243,30 @@ p {
     text-align: center;
   }
   
+  .hero-trust-indicators {
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .trust-badge {
+    flex: 1;
+    min-width: 80px;
+  }
+  
   .hero-benefits {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+  }
+  
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    justify-content: center;
   }
   
   .hero-image img {
@@ -2113,6 +2355,31 @@ p {
   
   .cta-image img {
     height: 300px;
+  }
+  
+  /* Instagram Reels */
+  .instagram-reels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .instagram-cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  /* Instagram Reels Mobile */
+  .instagram-reels-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .reel-container {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
+  .instagram-cta {
+    padding: 2rem 1rem;
   }
   
   /* Gallery */
