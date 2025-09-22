@@ -135,7 +135,7 @@
                   <div class="-my-6 divide-y divide-white/10">
                     <div class="space-y-2 py-6">
                       <a
-                        href="#"
+                        href="#tratamientos"
                         class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Servicios</a
                       >
@@ -157,7 +157,7 @@
                     </div>
                     <div class="py-6">
                       <a
-                        href="#"
+                        href="#contacto"
                         class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Reservar Cita</a
                       >
@@ -213,7 +213,7 @@
             <h1
               class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl"
             >
-              Tu figura, más
+              Tu figura más
               <span
                 class="typewriter-word"
                 data-words="definida,tonificada,esculpida,transformada"
@@ -231,7 +231,7 @@
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="#contacto"
                 class="px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl"
                 style="
                   background: var(--gradient-primary);
@@ -648,7 +648,11 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" data-gtm-event="view_testimonials">
+    <section
+      class="testimonials"
+      data-gtm-event="view_testimonials"
+      id="testimonios"
+    >
       <div class="container">
         <div class="section-header">
           <h2>Experiencias de nuestras pacientes</h2>
@@ -686,26 +690,122 @@
       </div>
     </section>
 
-    <!-- Offer Banner -->
+    <!-- Offer Banner 
     <section class="offer-banner" data-gtm-event="view_offer_bar">
       <div class="container">
-        <div class="section-header">
-          <h2>Consulta gratuita este mes</h2>
-          <p>Evaluación sin costo + 20% descuento en tu primer tratamiento</p>
+        <div class="offer-banner-content">
+          <div class="offer-main">
+            <div class="offer-badge">OFERTA ESPECIAL</div>
+            <h2>Evaluación Profesional Completamente GRATUITA</h2>
+            <p class="offer-subtitle">
+              Conoce tu diagnóstico personalizado + Plan de tratamiento diseñado
+              específicamente para ti
+            </p>
+
+            <div class="offer-benefits">
+              <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Evaluación corporal completa con tecnología 3D</span>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Análisis de composición corporal profesional</span>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Plan personalizado con objetivos realistas</span>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Asesoría nutricional y de estilo de vida</span>
+              </div>
+            </div>
+
+            <div class="offer-value">
+              <div class="price-comparison">
+                <div class="original-price">
+                  <span class="price-label">Valor normal:</span>
+                  <span class="price-amount">$45.000</span>
+                </div>
+                <div class="offer-price">
+                  <span class="price-label">Tu precio hoy:</span>
+                  <span class="price-amount">GRATIS</span>
+                </div>
+              </div>
+              <div class="bonus-offer">
+                <strong>+ BONUS:</strong> 20% descuento en tu primer tratamiento
+                si decides continuar
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-sidebar">
+            <div class="urgency-card">
+              <div class="urgency-header">
+                <div class="urgency-icon">⏰</div>
+                <span>Cupos Limitados</span>
+              </div>
+              <div class="urgency-text">
+                Solo <strong>12 evaluaciones gratuitas</strong> disponibles esta
+                semana
+              </div>
+              <div class="urgency-counter">
+                <div class="spots-remaining">
+                  <span class="spots-number">7</span>
+                  <span class="spots-text">cupos restantes</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="guarantee-card">
+              <div class="guarantee-icon">🛡️</div>
+              <div class="guarantee-text">
+                <strong>Garantía 100%:</strong><br />
+                Sin compromiso de compra.<br />
+                Evaluación profesional completa.
+              </div>
+            </div>
+
+            <div class="testimonial-mini">
+              <div class="testimonial-text">
+                "La evaluación fue súper completa. Me explicaron todo
+                detalladamente y el plan que me hicieron fue perfecto para mis
+                objetivos."
+              </div>
+              <div class="testimonial-author">- Carolina M., Las Condes</div>
+            </div>
+          </div>
         </div>
-        <div class="offer-content">
-          <div class="urgency">Cupos limitados cada semana</div>
+
+        <div class="offer-cta-section">
           <button
-            class="cta-primary"
+            class="cta-primary cta-offer-main"
             data-gtm-event="click_cta_offer"
             data-gtm-cta="primary"
             data-gtm-location="offer_banner"
           >
-            Agenda tu consulta gratuita
+            RESERVAR MI EVALUACIÓN GRATUITA AHORA
           </button>
+          <div class="cta-secondary-options">
+            <a
+              href="https://wa.me/56975730668?text=Hola%2C%20quiero%20agendar%20mi%20evaluaci%C3%B3n%20gratuita"
+              class="whatsapp-cta"
+              data-gtm-event="click_whatsapp"
+              data-gtm-location="offer_banner"
+            >
+              <span class="whatsapp-icon">📱</span>
+              WhatsApp: +56 9 7573 0668
+            </a>
+            <div class="schedule-info">
+              <span
+                >📅 Disponibilidad: Lun-Vie 9:00-19:00 • Sáb 9:00-14:00</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    -->
 
     <!-- Contact Form -->
     <section class="contact-form" id="contacto">
@@ -793,73 +893,382 @@
         </div>
         <div class="faq-list">
           <div class="faq-item">
-            <button class="faq-question">¿Cuántas sesiones necesito?</button>
-            <div class="faq-answer">
-              <p>
-                Depende del tratamiento y objetivos. Generalmente entre 4-8
-                sesiones para resultados óptimos.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">¿Los tratamientos duelen?</button>
-            <div class="faq-answer">
-              <p>
-                Son procedimientos mínimamente invasivos. Puedes sentir
-                molestias leves que son bien toleradas.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">¿Hay contraindicaciones?</button>
-            <div class="faq-answer">
-              <p>
-                Sí, embarazo, lactancia, enfermedades autoinmunes. Evaluamos
-                cada caso individualmente.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item">
             <button class="faq-question">
-              ¿Cómo me preparo para el tratamiento?
+              ¿Cuántas sesiones necesito para ver resultados?
             </button>
             <div class="faq-answer">
               <p>
-                Te daremos indicaciones específicas según el tratamiento.
-                Generalmente incluye hidratación y evitar alcohol.
+                El número de sesiones varía según el tratamiento y tus objetivos
+                específicos:
+              </p>
+              <ul>
+                <li>
+                  <strong>Lipoláser y Cavitación:</strong> 6-8 sesiones para
+                  reducción de grasa localizada
+                </li>
+                <li>
+                  <strong>Radiofrecuencia:</strong> 4-6 sesiones para
+                  reafirmación de piel
+                </li>
+                <li>
+                  <strong>Mesoterapia:</strong> 4-8 sesiones según la zona a
+                  tratar
+                </li>
+                <li>
+                  <strong>PRP Facial:</strong> 3-4 sesiones con intervalos de 4
+                  semanas
+                </li>
+                <li>
+                  <strong>Vacumterapia:</strong> 8-10 sesiones para mejores
+                  resultados
+                </li>
+              </ul>
+              <p>
+                En tu evaluación gratuita diseñamos un plan personalizado con el
+                número exacto de sesiones recomendadas para tu caso.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-question">
-              ¿Son compatibles los tratamientos entre sí?
+              ¿Los tratamientos son dolorosos?
             </button>
             <div class="faq-answer">
               <p>
-                Muchos tratamientos se pueden combinar para potenciar los
-                resultados. En la evaluación diseñamos protocolos personalizados
-                que pueden incluir múltiples técnicas de forma segura.
+                Nuestros tratamientos son <strong>100% no invasivos</strong> y
+                están diseñados para ser cómodos:
+              </p>
+              <ul>
+                <li>
+                  <strong>Lipoláser:</strong> Sensación de calor suave,
+                  completamente indoloro
+                </li>
+                <li>
+                  <strong>Radiofrecuencia:</strong> Calor controlado y agradable
+                  en la piel
+                </li>
+                <li>
+                  <strong>Cavitación:</strong> Vibración leve, sin molestias
+                </li>
+                <li>
+                  <strong>Mesoterapia:</strong> Pinchazos mínimos con agujas
+                  ultra finas
+                </li>
+                <li>
+                  <strong>PRP:</strong> Molestia leve durante la aplicación
+                  (similar a mesoterapia)
+                </li>
+              </ul>
+              <p>
+                La mayoría de nuestras pacientes describen las sesiones como
+                <em>"relajantes"</em> y muchas aprovechan para descansar durante
+                el tratamiento.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
-            <button class="faq-question">¿Cuándo veo resultados?</button>
+            <button class="faq-question">
+              ¿Existen contraindicaciones para los tratamientos?
+            </button>
             <div class="faq-answer">
               <p>
-                Los resultados varían según el tratamiento. Algunos como
-                cavitación muestran cambios desde la primera sesión, mientras
-                que otros como PRP requieren 2-3 sesiones para ver mejoras
-                significativas.
+                Por tu seguridad, algunos tratamientos tienen contraindicaciones
+                específicas:
+              </p>
+              <p><strong>Contraindicaciones generales:</strong></p>
+              <ul>
+                <li>Embarazo y lactancia</li>
+                <li>Enfermedades autoinmunes activas</li>
+                <li>Cáncer en tratamiento activo</li>
+                <li>Infecciones activas en la zona a tratar</li>
+                <li>Marcapasos (para tratamientos con radiofrecuencia)</li>
+              </ul>
+              <p>
+                <strong>Contraindicaciones específicas por tratamiento:</strong>
+              </p>
+              <ul>
+                <li>
+                  <strong>PRP:</strong> Trastornos de coagulación, uso de
+                  anticoagulantes
+                </li>
+                <li>
+                  <strong>Mesoterapia:</strong> Alergia a componentes
+                  específicos
+                </li>
+                <li>
+                  <strong>Lipoláser:</strong> Implantes metálicos en la zona
+                </li>
+              </ul>
+              <p>
+                En tu evaluación inicial realizamos una
+                <strong>historia clínica completa</strong> para asegurar que el
+                tratamiento sea 100% seguro para ti.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
-            <button class="faq-question">¿Qué formas de pago aceptan?</button>
+            <button class="faq-question">
+              ¿Cómo debo prepararme antes del tratamiento?
+            </button>
             <div class="faq-answer">
               <p>
-                Aceptamos efectivo, tarjetas de crédito y débito, transferencias
-                bancarias. También ofrecemos planes de pago y paquetes con
-                descuentos especiales para múltiples sesiones.
+                Te proporcionamos indicaciones específicas según tu tratamiento,
+                pero aquí tienes las recomendaciones generales:
+              </p>
+              <p><strong>24-48 horas antes:</strong></p>
+              <ul>
+                <li>
+                  Mantén una hidratación abundante (2-3 litros de agua diarios)
+                </li>
+                <li>Evita el consumo de alcohol</li>
+                <li>No uses cremas con retinol o ácidos en la zona a tratar</li>
+                <li>Evita la exposición solar directa</li>
+              </ul>
+              <p><strong>El día del tratamiento:</strong></p>
+              <ul>
+                <li>Usa ropa cómoda y fácil de quitar</li>
+                <li>No uses joyas en la zona a tratar</li>
+                <li>Ven sin maquillaje si es tratamiento facial</li>
+                <li>Desayuna normalmente (no vengas en ayunas)</li>
+              </ul>
+              <p>
+                <strong>Para PRP:</strong> Evita antiinflamatorios 48h antes y
+                mantén una alimentación rica en proteínas.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              ¿Se pueden combinar diferentes tratamientos?
+            </button>
+            <div class="faq-answer">
+              <p>
+                ¡Absolutamente! La
+                <strong>combinación de tratamientos</strong> es una de nuestras
+                especialidades y permite potenciar los resultados:
+              </p>
+              <p><strong>Protocolos combinados populares:</strong></p>
+              <ul>
+                <li>
+                  <strong>Remodelación corporal:</strong> Lipoláser + Cavitación
+                  + Radiofrecuencia
+                </li>
+                <li>
+                  <strong>Rejuvenecimiento facial:</strong> PRP + Mesoterapia +
+                  Radiofrecuencia
+                </li>
+                <li>
+                  <strong>Reafirmación integral:</strong> Radiofrecuencia +
+                  Vacumterapia + Mesoterapia
+                </li>
+                <li>
+                  <strong>Reducción de celulitis:</strong> Cavitación +
+                  Vacumterapia + Mesoterapia
+                </li>
+              </ul>
+              <p>
+                Nuestras enfermeras especialistas diseñan
+                <strong>protocolos personalizados</strong> que pueden incluir
+                2-3 tecnologías en una misma sesión, respetando siempre los
+                tiempos de seguridad entre aplicaciones.
+              </p>
+              <p>
+                <em
+                  >Los protocolos combinados suelen mostrar resultados 40-60%
+                  más efectivos que los tratamientos individuales.</em
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              ¿Cuándo empiezo a ver los primeros resultados?
+            </button>
+            <div class="faq-answer">
+              <p>
+                Los tiempos de resultados varían según el tratamiento y tu
+                respuesta individual:
+              </p>
+              <p><strong>Resultados inmediatos (misma sesión):</strong></p>
+              <ul>
+                <li>
+                  <strong>Cavitación:</strong> Reducción de 1-3cm de contorno
+                </li>
+                <li>
+                  <strong>Radiofrecuencia:</strong> Piel más firme y tersa
+                </li>
+                <li>
+                  <strong>Vacumterapia:</strong> Mejora de la circulación y
+                  textura
+                </li>
+              </ul>
+              <p><strong>Resultados progresivos (2-4 semanas):</strong></p>
+              <ul>
+                <li>
+                  <strong>Lipoláser:</strong> Reducción gradual de grasa
+                  localizada
+                </li>
+                <li>
+                  <strong>Mesoterapia:</strong> Mejora de la calidad de la piel
+                </li>
+              </ul>
+              <p><strong>Resultados a mediano plazo (4-8 semanas):</strong></p>
+              <ul>
+                <li>
+                  <strong>PRP:</strong> Regeneración celular y mejora de textura
+                </li>
+                <li>
+                  <strong>Protocolos combinados:</strong> Transformación
+                  integral visible
+                </li>
+              </ul>
+              <p>
+                <strong>Importante:</strong> Los resultados son acumulativos.
+                Cada sesión potencia la anterior, y los cambios más
+                significativos se aprecian al completar el protocolo
+                recomendado.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              ¿Qué formas de pago y financiamiento ofrecen?
+            </button>
+            <div class="faq-answer">
+              <p>
+                Facilitamos el acceso a nuestros tratamientos con múltiples
+                opciones de pago:
+              </p>
+              <p><strong>Métodos de pago aceptados:</strong></p>
+              <ul>
+                <li>Efectivo (10% descuento adicional)</li>
+                <li>
+                  Tarjetas de crédito y débito (Visa, Mastercard, American
+                  Express)
+                </li>
+                <li>Transferencia bancaria</li>
+                <li>Pago con aplicaciones móviles (Khipu, Flow)</li>
+              </ul>
+              <p><strong>Planes de financiamiento:</strong></p>
+              <ul>
+                <li>
+                  <strong>Paquetes completos:</strong> Hasta 20% descuento
+                  pagando por adelantado
+                </li>
+                <li>
+                  <strong>Cuotas sin interés:</strong> Hasta 6 cuotas con
+                  tarjetas participantes
+                </li>
+                <li>
+                  <strong>Plan mensual:</strong> Divide tu tratamiento en pagos
+                  mensuales cómodos
+                </li>
+                <li>
+                  <strong>Promociones estacionales:</strong> Descuentos
+                  especiales según temporada
+                </li>
+              </ul>
+              <p>
+                <strong>Garantía de precio:</strong> Una vez iniciado tu
+                protocolo, el precio se mantiene fijo durante todo el
+                tratamiento, sin sorpresas ni aumentos.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              ¿Qué cuidados debo tener después del tratamiento?
+            </button>
+            <div class="faq-answer">
+              <p>
+                Los cuidados post-tratamiento son clave para optimizar y
+                mantener los resultados:
+              </p>
+              <p><strong>Primeras 24-48 horas:</strong></p>
+              <ul>
+                <li>Mantén hidratación abundante (ayuda a eliminar toxinas)</li>
+                <li>Evita ejercicio intenso y saunas</li>
+                <li>No uses agua muy caliente en la ducha</li>
+                <li>Aplica protector solar si es tratamiento facial</li>
+              </ul>
+              <p><strong>Primera semana:</strong></p>
+              <ul>
+                <li>
+                  Realiza caminatas ligeras (favorece el drenaje linfático)
+                </li>
+                <li>Mantén una alimentación balanceada</li>
+                <li>
+                  Evita el alcohol (interfiere con la eliminación de grasa)
+                </li>
+                <li>Usa las cremas recomendadas por nuestras especialistas</li>
+              </ul>
+              <p><strong>Cuidados a largo plazo:</strong></p>
+              <ul>
+                <li>Mantén un estilo de vida activo</li>
+                <li>Hidratación constante de la piel</li>
+                <li>Protección solar diaria</li>
+                <li>Sesiones de mantenimiento según recomendación</li>
+              </ul>
+              <p>
+                Te entregamos una
+                <strong>guía personalizada de cuidados</strong> específica para
+                tu tratamiento, con recomendaciones detalladas y productos
+                sugeridos.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              ¿Tienen garantía de resultados?
+            </button>
+            <div class="faq-answer">
+              <p>
+                En Nurse Glow Up respaldamos la calidad de nuestros tratamientos
+                con garantías claras:
+              </p>
+              <p><strong>Nuestra garantía incluye:</strong></p>
+              <ul>
+                <li>
+                  <strong>Evaluación gratuita:</strong> Sin costo y sin
+                  compromiso
+                </li>
+                <li>
+                  <strong>Protocolo personalizado:</strong> Diseñado
+                  específicamente para tus objetivos
+                </li>
+                <li>
+                  <strong>Seguimiento profesional:</strong> Monitoreo en cada
+                  sesión por enfermeras especialistas
+                </li>
+                <li>
+                  <strong>Ajustes sin costo:</strong> Modificamos el protocolo
+                  si es necesario
+                </li>
+              </ul>
+              <p><strong>Compromiso de satisfacción:</strong></p>
+              <ul>
+                <li>
+                  Si no ves resultados en las primeras 3 sesiones, evaluamos tu
+                  caso sin costo
+                </li>
+                <li>
+                  Sesiones de refuerzo incluidas si el protocolo lo requiere
+                </li>
+                <li>Asesoría post-tratamiento durante 3 meses</li>
+              </ul>
+              <p>
+                <strong>Importante:</strong> Los resultados pueden variar según
+                factores individuales como metabolismo, edad, estilo de vida y
+                adherencia a las recomendaciones. Por eso la evaluación inicial
+                es fundamental para establecer expectativas realistas.
               </p>
             </div>
           </div>
@@ -941,8 +1350,7 @@
         data-gtm-location="sticky"
         aria-label="Contactar por WhatsApp"
       >
-        <span class="whatsapp-icon">WA</span>
-        <span class="whatsapp-text">WhatsApp</span>
+        <img src="images/whatsapp.png" alt="WhatsApp" />
       </a>
     </div>
 

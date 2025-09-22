@@ -138,9 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Scroll to contact form
       const contactForm = document.getElementById("contacto");
       if (contactForm) {
-        contactForm.scrollIntoView({
+        const headerOffset = 80;
+        const elementPosition = contactForm.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
           behavior: "smooth",
-          block: "start",
         });
 
         // Pre-fill form with selected service
@@ -299,9 +304,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        targetElement.scrollIntoView({
+        // Calculate offset for fixed header if exists
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
           behavior: "smooth",
-          block: "start",
         });
 
         gtmTrack("click_anchor", {
@@ -460,10 +471,10 @@ setTimeout(() => {
 
 // Typewriter Effect
 function initTypewriter() {
-  const typewriterElement = document.querySelector('.typewriter-word');
+  const typewriterElement = document.querySelector(".typewriter-word");
   if (!typewriterElement) return;
 
-  const words = typewriterElement.getAttribute('data-words').split(',');
+  const words = typewriterElement.getAttribute("data-words").split(",");
   let currentWordIndex = 0;
   let currentCharIndex = 0;
   let isDeleting = false;
@@ -473,25 +484,31 @@ function initTypewriter() {
 
   function type() {
     const currentWord = words[currentWordIndex];
-    
+
     if (isDeleting) {
       // Deleting characters
-      typewriterElement.textContent = currentWord.substring(0, currentCharIndex - 1);
+      typewriterElement.textContent = currentWord.substring(
+        0,
+        currentCharIndex - 1
+      );
       currentCharIndex--;
-      
+
       if (currentCharIndex === 0) {
         isDeleting = false;
         currentWordIndex = (currentWordIndex + 1) % words.length;
         setTimeout(type, 500); // Pause before typing next word
         return;
       }
-      
+
       setTimeout(type, deleteSpeed);
     } else {
       // Typing characters
-      typewriterElement.textContent = currentWord.substring(0, currentCharIndex + 1);
+      typewriterElement.textContent = currentWord.substring(
+        0,
+        currentCharIndex + 1
+      );
       currentCharIndex++;
-      
+
       if (currentCharIndex === currentWord.length) {
         // Word complete, track the word display
         gtmTrack("typewriter_word_complete", {
@@ -499,7 +516,7 @@ function initTypewriter() {
           word_index: currentWordIndex,
           timestamp: new Date().toISOString(),
         });
-        
+
         // Pause then start deleting
         setTimeout(() => {
           isDeleting = true;
@@ -507,17 +524,40 @@ function initTypewriter() {
         }, pauseTime);
         return;
       }
-      
+
       setTimeout(type, typeSpeed);
     }
   }
 
   // Start the typewriter effect after a delay
   setTimeout(() => {
-    typewriterElement.classList.add('typing');
+    typewriterElement.classList.add("typing");
     type();
   }, 2000);
 }
 
 // Initialize typewriter when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTypewriter);
+document.addEventListener("DOMContentLoaded", initTypewriter);
+
+// Spots Counter Animation
+function initSpotsCounter() {
+  const spotsNumber = document.querySelector(".spots-number");
+  if (!spotsNumber) return;
+
+  const targetNumber = parseInt(spotsNumber.textContent);
+  let currentNumber = targetNumber + 3; // Start from a higher number
+
+  const countDown = () => {
+    if (currentNumber > targetNumber) {
+      spotsNumber.textContent = currentNumber;
+      currentNumber--;
+      setTimeout(countDown, 2000); // Update every 2 seconds
+    }
+  };
+
+  // Start countdown after 3 seconds
+  setTimeout(countDown, 3000);
+}
+
+// Initialize spots counter when DOM is loaded
+document.addEventListener("DOMContentLoaded", initSpotsCounter);
