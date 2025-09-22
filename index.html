@@ -23,113 +23,256 @@
     <meta property="og:type" content="website" />
 
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json" src="schema.json"></script>
   </head>
   <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="container">
-        <div class="nav-content">
-          <div class="logo">
-            <img src="images/ngu-logo.png" alt="Nurse Glow Up" />
+    <!-- HERO Section -->
+    <div style="background-color: var(--bg-dark)">
+      <header class="absolute inset-x-0 top-0 z-50">
+        <nav
+          aria-label="Global"
+          class="flex items-center justify-between p-6 lg:px-8"
+        >
+          <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5">
+              <span class="sr-only">Nurse Glow Up</span>
+              <img
+                src="images/ngu-logo.png"
+                alt="Nurse Glow Up - Centro de Estética Santiago"
+                class="h-8 w-auto"
+              />
+            </a>
           </div>
-          <ul class="nav-menu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#tratamientos">Tratamientos</a></li>
-            <li><a href="#especialistas">Especialistas</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-          </ul>
-          <button class="cta-nav">Reservar Cita</button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="inicio" data-gtm-event="view_hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1>Logra la figura que siempre quisiste</h1>
-            <p class="hero-subtitle">
-              Tratamientos no invasivos con resultados reales.
-              <strong>Evaluación gratuita</strong> y protocolo diseñado
-              especialmente para ti.
-            </p>
-
-            <div class="hero-benefits">
-              <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>Sin cirugías ni dolor</span>
-              </div>
-              <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>Resultados desde la 1ª sesión</span>
-              </div>
-              <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>Atención personalizada 1 a 1</span>
-              </div>
-              <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>Tecnología médica avanzada</span>
-              </div>
+          <div class="flex lg:hidden">
+            <button
+              type="button"
+              command="show-modal"
+              commandfor="mobile-menu"
+              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+            >
+              <span class="sr-only">Abrir menú</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                data-slot="icon"
+                aria-hidden="true"
+                class="size-6"
+              >
+                <path
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="hidden lg:flex lg:gap-x-12">
+            <a href="#servicios" class="text-sm/6 font-semibold text-white"
+              >Servicios</a
+            >
+            <a href="#tratamientos" class="text-sm/6 font-semibold text-white"
+              >Tratamientos</a
+            >
+            <a href="#testimonios" class="text-sm/6 font-semibold text-white"
+              >Testimonios</a
+            >
+            <a href="#contacto" class="text-sm/6 font-semibold text-white"
+              >Contacto</a
+            >
+          </div>
+          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="#contacto" class="text-sm/6 font-semibold text-white"
+              >Reservar Cita <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+        </nav>
+        <el-dialog>
+          <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+            <div tabindex="0" class="fixed inset-0 focus:outline-none">
+              <el-dialog-panel
+                class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10"
+                style="background-color: var(--bg-dark)"
+              >
+                <div class="flex items-center justify-between">
+                  <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Nurse Glow Up</span>
+                    <img
+                      src="images/ngu-logo.png"
+                      alt="Nurse Glow Up"
+                      class="h-8 w-auto"
+                    />
+                  </a>
+                  <button
+                    type="button"
+                    command="close"
+                    commandfor="mobile-menu"
+                    class="-m-2.5 rounded-md p-2.5 text-white"
+                  >
+                    <span class="sr-only">Cerrar menú</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      data-slot="icon"
+                      aria-hidden="true"
+                      class="size-6"
+                    >
+                      <path
+                        d="M6 18 18 6M6 6l12 12"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div class="mt-6 flow-root">
+                  <div class="-my-6 divide-y divide-white/10">
+                    <div class="space-y-2 py-6">
+                      <a
+                        href="#"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        >Servicios</a
+                      >
+                      <a
+                        href="#tratamientos"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        >Tratamientos</a
+                      >
+                      <a
+                        href="#testimonios"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        >Testimonios</a
+                      >
+                      <a
+                        href="#contacto"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        >Contacto</a
+                      >
+                    </div>
+                    <div class="py-6">
+                      <a
+                        href="#"
+                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                        >Reservar Cita</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </el-dialog-panel>
             </div>
+          </dialog>
+        </el-dialog>
+      </header>
 
-            <div class="hero-ctas">
-              <button
-                class="cta-primary"
+      <div class="relative isolate px-6 pt-14 lg:px-8">
+        <div
+          aria-hidden="true"
+          class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+        >
+          <div
+            style="
+              clip-path: polygon(
+                74.1% 44.1%,
+                100% 61.6%,
+                97.5% 26.9%,
+                85.5% 0.1%,
+                80.7% 2%,
+                72.5% 32.5%,
+                60.2% 62.4%,
+                52.4% 68.1%,
+                47.5% 58.3%,
+                45.2% 34.5%,
+                27.5% 76.7%,
+                0.1% 64.9%,
+                17.9% 100%,
+                27.6% 76.8%,
+                76.1% 97.7%,
+                74.1% 44.1%
+              );
+            "
+            class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 opacity-20 sm:left-[calc(50%-30rem)] sm:w-288.75"
+            style="background: var(--gradient-primary)"
+          ></div>
+        </div>
+        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div
+              class="relative px-3 py-1 text-sm/6 ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300"
+              style="color: var(--text-lighter); border-radius: 20px"
+            >
+              OFERTA ESPECIAL: Evaluación GRATUITA + 25% OFF primer tratamiento
+            </div>
+          </div>
+          <div class="text-center">
+            <h1
+              class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl"
+            >
+              Tu figura, más definida. Tu piel, más firme.
+            </h1>
+            <p
+              class="mt-8 text-lg font-medium text-pretty sm:text-xl/8"
+              style="color: var(--text-lighter)"
+            >
+              Tratamientos no invasivos con
+              <strong>resultados desde la primera sesión</strong>. Mesoterapia,
+              PRP, Lipoláser con enfermeras especialistas en Santiago Centro.
+              <strong>Sin cirugías ni dolor.</strong>
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+              <a
+                href="#"
+                class="px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl"
+                style="
+                  background: var(--gradient-primary);
+                  border: none;
+                  border-radius: 16px;
+                  min-width: 200px;
+                "
                 data-gtm-event="click_cta_hero"
                 data-gtm-cta="primary"
+                data-gtm-location="hero"
+                >RESERVA TU EVALUACIÓN GRATUITA</a
               >
-                <span class="cta-text">Reserva tu evaluación GRATIS</span>
-                <span class="cta-subtext"
-                  >Sin compromiso • Metro Santa Lucía</span
-                >
-              </button>
-              <button
-                class="cta-secondary"
-                data-gtm-event="click_whatsapp"
-                data-gtm-cta="secondary"
-              >
-                <span class="whatsapp-icon">📱</span>
-                <span>Consulta por WhatsApp</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="hero-image">
-            <div class="hero-image-container">
-              <img
-                src="images/look-studio.jpg"
-                alt="Mujer joven mostrando resultados de tratamientos estéticos"
-                loading="eager"
-              />
-              <div class="hero-floating-card">
-                <div class="card-header">
-                  <div class="card-icon">N</div>
-                  <div class="card-title">Nurse Glow Up</div>
-                </div>
-                <div class="card-stats">
-                  <div class="stat">
-                    <span class="stat-number">6</span>
-                    <span class="stat-label">Tratamientos</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">15+</span>
-                    <span class="stat-label">Años exp.</span>
-                  </div>
-                </div>
-                <div class="card-location">📍 Metro Santa Lucía</div>
-              </div>
             </div>
           </div>
         </div>
+        <div
+          aria-hidden="true"
+          class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+        >
+          <div
+            style="
+              clip-path: polygon(
+                74.1% 44.1%,
+                100% 61.6%,
+                97.5% 26.9%,
+                85.5% 0.1%,
+                80.7% 2%,
+                72.5% 32.5%,
+                60.2% 62.4%,
+                52.4% 68.1%,
+                47.5% 58.3%,
+                45.2% 34.5%,
+                27.5% 76.7%,
+                0.1% 64.9%,
+                17.9% 100%,
+                27.6% 76.8%,
+                76.1% 97.7%,
+                74.1% 44.1%
+              );
+            "
+            class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 opacity-15 sm:left-[calc(50%+36rem)] sm:w-288.75"
+            style="background: var(--gradient-accent)"
+          ></div>
+        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Benefits Section -->
     <section class="benefits" data-gtm-event="view_benefits">
@@ -164,7 +307,11 @@
     </section>
 
     <!-- Detailed Services Section -->
-    <section class="detailed-services" id="tratamientos">
+    <section
+      class="services-detailed"
+      data-gtm-event="view_services"
+      id="tratamientos"
+    >
       <div class="container">
         <div class="section-header">
           <h2>Elige el tratamiento ideal para ti</h2>
@@ -273,7 +420,12 @@
           <div class="cta-content-simple">
             <h3>¿Tienes dudas sobre cuál tratamiento elegir?</h3>
             <p>Agenda tu consulta gratuita y te ayudamos a decidir</p>
-            <button class="cta-primary" data-gtm-event="click_cta_intermedio">
+            <button
+              class="cta-primary"
+              data-gtm-event="click_cta_offer"
+              data-gtm-cta="secondary"
+              data-gtm-location="services"
+            >
               Consulta sin compromiso
             </button>
           </div>
@@ -463,7 +615,6 @@
             href="https://instagram.com/nurse.glow.up"
             target="_blank"
             class="instagram-button"
-            data-gtm-event="click_instagram"
           >
             <span>@nurse.glow.up</span>
           </a>
@@ -511,7 +662,7 @@
     </section>
 
     <!-- Offer Banner -->
-    <section class="offer-banner" data-gtm-event="click_offer">
+    <section class="offer-banner" data-gtm-event="view_offer_bar">
       <div class="container">
         <div class="section-header">
           <h2>Consulta gratuita este mes</h2>
@@ -519,7 +670,12 @@
         </div>
         <div class="offer-content">
           <div class="urgency">Cupos limitados cada semana</div>
-          <button class="cta-primary" data-gtm-event="click_cta_offer">
+          <button
+            class="cta-primary"
+            data-gtm-event="click_cta_offer"
+            data-gtm-cta="primary"
+            data-gtm-location="offer_banner"
+          >
             Agenda tu consulta gratuita
           </button>
         </div>
@@ -732,11 +888,19 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 Nurse Glow Up. Todos los derechos reservados.</p>
+          <p>
+            &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Nurse Glow Up. Todos los derechos reservados.
+          </p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram">Instagram</a>
-            <a href="#" aria-label="Facebook">Facebook</a>
-            <a href="#" aria-label="WhatsApp">WhatsApp</a>
+            <a
+              href="https://www.instagram.com/nurse.glow.up/"
+              aria-label="Instagram"
+              >Instagram</a
+            >
           </div>
         </div>
       </div>
@@ -748,7 +912,8 @@
         href="https://wa.me/56975730668?text=Hola%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20gratuita"
         target="_blank"
         rel="noopener"
-        data-gtm-event="click_whatsapp_sticky"
+        data-gtm-event="click_whatsapp"
+        data-gtm-location="sticky"
         aria-label="Contactar por WhatsApp"
       >
         <span class="whatsapp-icon">WA</span>
@@ -772,5 +937,11 @@
 
     <!-- Instagram Embed Script -->
     <script async src="//www.instagram.com/embed.js"></script>
+
+    <!-- Element.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+      type="module"
+    ></script>
   </body>
 </html>

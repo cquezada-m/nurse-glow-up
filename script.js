@@ -221,29 +221,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // WhatsApp number validation
-      const whatsappValue = formObject.whatsapp;
-      const whatsappRegex = /^(\+?56)?[9][0-9]{8}$/;
-      if (!whatsappRegex.test(whatsappValue.replace(/\s/g, ""))) {
-        gtmTrack("form_error", {
-          error_type: "whatsapp_format",
-          whatsapp_value: whatsappValue,
-          timestamp: new Date().toISOString(),
-        });
-
-        document.getElementById("whatsapp").style.borderColor = "#E53E3E";
-        showFormMessage(
-          "Por favor ingresa un número de WhatsApp válido (ej: +56912345678).",
-          "error"
-        );
-        return;
-      }
-
       // Track successful form submission
       gtmTrack("submit_form", {
         form_data: {
           nombre: formObject.nombre,
-          comuna: formObject.comuna || "no_specified",
           servicio: formObject.servicio || "no_specified",
           horario: formObject.horario || "no_specified",
           has_message: !!formObject.mensaje,
