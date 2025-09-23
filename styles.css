@@ -2775,25 +2775,7 @@ p {
   margin-top: 0.25rem;
 }
 
-.form-message {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  text-align: center;
-  font-weight: 600;
-}
-
-.form-message.success {
-  background: #c6f6d5;
-  color: #22543d;
-  border: 2px solid #9ae6b4;
-}
-
-.form-message.error {
-  background: #fed7d7;
-  color: #742a2a;
-  border: 2px solid #fc8181;
-}
+/* Form message styles moved to responsive section */
 
 /* FAQ Section */
 .faq-list {
@@ -3278,18 +3260,70 @@ p {
   }
 
   /* Benefits eliminado - se reescribirá */
+
+  /* Form Messages Mobile */
+  .form-message {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0.75rem 0;
+    border-radius: 6px;
+    max-width: calc(100vw - 2rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Form Container Mobile */
+  .smart-form {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  /* WhatsApp Tooltip Mobile */
+  .whatsapp-dynamic-tooltip {
+    font-size: 0.8rem !important;
+    max-width: calc(100vw - 170px) !important;
+    right: 90px !important;
+    bottom: 15px !important;
+    top: auto !important;
+    transform: none !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    line-height: 1.4 !important;
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4) !important;
+  }
+}
+
+/* WhatsApp Tooltip Animation */
+@keyframes fadeInTooltip {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
 }
 
 .whatsapp-text {
   font-size: 0.95rem;
 }
 
-/* Form Messages */
+/* Form Messages - Responsive */
 .form-message {
   padding: 1rem;
   border-radius: 8px;
   margin-top: 1rem;
   font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .form-message.success {

@@ -1588,31 +1588,57 @@ function showWhatsAppTooltip(message) {
   const tooltip = document.createElement("div");
   tooltip.className = "whatsapp-dynamic-tooltip";
   tooltip.textContent = message;
+  // Detectar si es mobile
+  const isMobile = window.innerWidth <= 768;
+
   tooltip.style.cssText = `
     position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
+    ${
+      isMobile
+        ? "right: 90px; max-width: calc(100vw - 170px); bottom: 15px;"
+        : "right: 80px; top: 50%; transform: translateY(-50%);"
+    }
+    ${isMobile ? "" : "top: 50%; transform: translateY(-50%);"}
     background: #25d366;
     color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: ${isMobile ? "10px 14px" : "8px 12px"};
+    border-radius: 12px;
+    font-size: ${isMobile ? "0.8rem" : "0.85rem"};
     font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    ${
+      isMobile
+        ? "white-space: normal; word-wrap: break-word; line-height: 1.4;"
+        : "white-space: nowrap;"
+    }
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     animation: fadeInTooltip 0.3s ease;
     z-index: 1001;
   `;
 
+  // Agregar flecha para mobile
+  if (isMobile) {
+    const arrow = document.createElement("div");
+    arrow.style.cssText = `
+      position: absolute;
+      right: -8px;
+      bottom: 20px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid #25d366;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    `;
+    tooltip.appendChild(arrow);
+  }
+
   whatsappButton.appendChild(tooltip);
 
-  // Remover después de 3 segundos
+  // Remover después de 5 segundos
   setTimeout(() => {
     if (tooltip.parentNode) {
       tooltip.remove();
     }
-  }, 3000);
+  }, 5000);
 }
 
 // CSS para animación de tooltip
@@ -1671,7 +1697,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const completion = calculateFormCompletion();
     if (completion === 0) {
       showWhatsAppTooltip(
-        "¡Completa el formulario para un mensaje personalizado!"
+        "¡Completa el formulario para un mensaje más personalizado!"
       );
     }
   }, 30000); // 30 segundos
@@ -1918,6 +1944,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initReelsInteractions();
   initReelsAnimation();
   initInstagramTracking();
+  showWhatsAppTooltip("¡Hola! ¿En qué puedo ayudarte?");
 });
 
 // Función global para usar desde otros lugares
