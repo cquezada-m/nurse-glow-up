@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://nurseglowup.cl/</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nurseglowup.cl/images/ngu-logo.png</image:loc>
+      <image:title>Nurse Glow Up Centro Estético Santiago Centro</image:title>
+      <image:caption>Centro estético profesional en Santiago Centro, Metro Santa Lucía</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Servicios Principales -->
+  <url>
+    <loc>https://nurseglowup.cl/servicios/mesoterapia-facial-santiago</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/prp-facial-plasma-rico-plaquetas</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/lipolaser-no-invasivo</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/radiofrecuencia-facial</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tratamientos Combinados -->
+  <url>
+    <loc>https://nurseglowup.cl/servicios/mesoterapia-radiofrecuencia-santiago</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/mesoterapia-lipolaser-combinado</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/lipolaser-radiofrecuencia-santiago</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/servicios/prp-radiofrecuencia-antiage</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Articles (Future) -->
+  <url>
+    <loc>https://nurseglowup.cl/blog/mesoterapia-facial-santiago-beneficios</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/blog/prp-plasma-rico-plaquetas-chile</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/blog/lipolaser-santiago-centro-resultados</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Páginas Informativas -->
+  <url>
+    <loc>https://nurseglowup.cl/contacto</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/ubicacion</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/preguntas-frecuentes</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Landing Pages Específicas -->
+  <url>
+    <loc>https://nurseglowup.cl/transformar-imagen-sin-cirugia</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/evaluacion-gratuita-santiago</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://nurseglowup.cl/resultados-primera-sesion</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

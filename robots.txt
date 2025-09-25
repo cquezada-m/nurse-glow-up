@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nurseglowup.cl/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block unnecessary crawling of assets
+Disallow: /assets/temp/
+Disallow: /logs/
+Disallow: /*.json$
+Disallow: /GTM_*
+
+# Allow important files
+Allow: /schema.json
+Allow: /favicon.ico
+Allow: /images/
+Allow: /styles.css
+Allow: /script.js
+
+# SEO optimizations
+# Allow crawling of all treatment pages
+Allow: /servicios/
+Allow: /blog/
+Allow: /tratamientos/
+
+# Block admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /test/

@@ -5,15 +5,15 @@
       "@type": "MedicalBusiness",
       "@id": "https://nurseglowup.cl/#medicalbusiness",
       "name": "Nurse Glow Up",
-      "alternateName": "Centro Estética Nurse Glow Up Santiago",
-      "description": "Centro de estética especializado en tratamientos no invasivos como mesoterapia, PRP, lipoláser, radiofrecuencia, cavitación y vacumterapia en Santiago de Chile.",
+      "alternateName": "Centro Estético Santiago Centro Metro Santa Lucía",
+      "description": "Centro estético profesional en Santiago Centro, Metro Santa Lucía. Especialistas en mesoterapia facial, PRP plasma rico en plaquetas, lipoláser no invasivo, radiofrecuencia facial y tratamientos corporales en Santiago Chile.",
       "url": "https://nurseglowup.cl",
       "telephone": "+56975730668",
       "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Providencia 1234",
-        "addressLocality": "Providencia",
+        "streetAddress": "Santiago Centro, cerca Metro Santa Lucía",
+        "addressLocality": "Santiago Centro",
         "addressRegion": "Región Metropolitana",
         "postalCode": "7500000",
         "addressCountry": "CL"
@@ -67,29 +67,71 @@
           "@type": "Review",
           "author": {
             "@type": "Person",
-            "name": "María José P."
+            "name": "Laura M."
           },
           "reviewRating": {
             "@type": "Rating",
             "ratingValue": "5",
             "bestRating": "5"
           },
-          "reviewBody": "Increíble el resultado con mesoterapia. Se nota desde la primera sesión. El equipo es muy profesional.",
-          "datePublished": "2024-08-15"
+          "reviewBody": "Decidí probar la mesoterapia porque tenía zonas con grasa localizada que no desaparecían ni con dieta. Desde la primera sesión noté mejor textura en mi piel, y lo mejor es que es un tratamiento mínimamente invasivo. Me sentí muy bien atendida y segura durante todo el proceso.",
+          "datePublished": "2024-09-15"
         },
         {
           "@type": "Review",
           "author": {
             "@type": "Person",
-            "name": "Carolina M."
+            "name": "Andrea S."
           },
           "reviewRating": {
             "@type": "Rating",
             "ratingValue": "5",
             "bestRating": "5"
           },
-          "reviewBody": "El PRP me cambió la piel completamente. Más firme y luminosa. Lo recomiendo 100%.",
-          "datePublished": "2024-08-20"
+          "reviewBody": "El PRP fue un antes y un después para mi piel. No sólo mejoró la textura y la luminosidad, sino que me ayudó con las líneas finas. Me dio tranquilidad saber que se usa mi propia sangre, lo que lo hace muy seguro y natural.",
+          "datePublished": "2024-09-20"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Carlos V."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Tenía dudas sobre la mesoterapia, pero me explicaron todo con claridad y sentí confianza desde el primer momento. No es doloroso y los resultados se ven progresivamente. Muy recomendado para quien busca algo no quirúrgico pero efectivo.",
+          "datePublished": "2024-09-18"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Mariela T."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Probé la radiofrecuencia facial por recomendación y fue una grata sorpresa. El tratamiento es cómodo, relajante y completamente seguro. Vi mejor firmeza en mi rostro después de unas sesiones, y sin necesidad de agujas ni tiempo de recuperación.",
+          "datePublished": "2024-09-22"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Sofía L."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "La cavitación me ayudó a reducir grasa en zonas rebeldes como las caderas. Noté resultados desde la tercera sesión. Me explicaron todo claramente y siempre estuvieron atentos a mi evolución. Lo recomiendo totalmente, sobre todo si estás comprometida con tu salud.",
+          "datePublished": "2024-09-25"
         }
       ],
       "medicalSpecialty": [
@@ -133,6 +175,30 @@
           "name": "Vacumterapia",
           "description": "Drenaje linfático y mejora de la circulación",
           "procedureType": "Vacuum therapy treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Mesoterapia + Radiofrecuencia",
+          "description": "Protocolo combinado para rejuvenecer, hidratar y reafirmar la piel de manera integral",
+          "procedureType": "Combined aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Mesoterapia + Lipoláser",
+          "description": "Tratamiento combinado para eliminar grasa localizada de forma más efectiva y acelerar la reducción de medidas, sin cirugía",
+          "procedureType": "Combined aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Lipoláser + Radiofrecuencia",
+          "description": "Protocolo para reducir grasa localizada y reafirmar la piel al mismo tiempo, logrando un contorno corporal más definido y tonificado",
+          "procedureType": "Combined aesthetic treatment"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "PRP + Radiofrecuencia",
+          "description": "Tratamiento antiage para rejuvenecer, tensar y regenerar la piel desde el interior, logrando un efecto profundo y duradero",
+          "procedureType": "Combined regenerative treatment"
         }
       ],
       "hasOfferCatalog": {
@@ -185,8 +251,8 @@
       "email": "info@nurseglowup.cl",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Providencia 1234",
-        "addressLocality": "Providencia",
+        "streetAddress": "Santiago Centro, cerca Metro Santa Lucía",
+        "addressLocality": "Santiago Centro",
         "addressRegion": "Región Metropolitana",
         "postalCode": "7500000",
         "addressCountry": "CL"
@@ -217,6 +283,22 @@
       "@type": "FAQPage",
       "@id": "https://nurseglowup.cl/#faqpage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta la mesoterapia facial en Santiago?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El precio de la mesoterapia facial en Santiago varía entre $45.000 y $80.000 por sesión. En Nurse Glow Up, ubicados en Santiago Centro cerca del Metro Santa Lucía, ofrecemos evaluación gratuita y planes de tratamiento personalizados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde hacer PRP facial en Santiago Centro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En Nurse Glow Up, centro estético profesional ubicado en Santiago Centro cerca del Metro Santa Lucía, realizamos PRP facial con tecnología de vanguardia. Somos especialistas en plasma rico en plaquetas con más de 850 pacientes satisfechos."
+          }
+        },
         {
           "@type": "Question",
           "name": "¿Cuántas sesiones necesito?",

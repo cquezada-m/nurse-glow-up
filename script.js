@@ -63,16 +63,22 @@ function animateOnScroll(element) {
     });
   }
 
-  // Animate testimonials
+  // Animate testimonials (skip if will become carousel)
   if (element.classList.contains("testimonials")) {
     const testimonials = element.querySelectorAll(".testimonial");
-    testimonials.forEach((testimonial, index) => {
-      setTimeout(() => {
-        testimonial.style.opacity = "1";
-        testimonial.style.transform = "translateY(0)";
-        testimonial.style.transition = "all 0.6s ease-out";
-      }, index * 200);
-    });
+    if (testimonials.length <= 1) {
+      // Only animate if not enough for carousel
+      testimonials.forEach((testimonial, index) => {
+        testimonial.style.opacity = "0";
+        testimonial.style.transform = "translateY(30px)";
+
+        setTimeout(() => {
+          testimonial.style.opacity = "1";
+          testimonial.style.transform = "translateY(0)";
+          testimonial.style.transition = "all 0.6s ease-out";
+        }, index * 150);
+      });
+    }
   }
 
   // Animate form
@@ -1277,21 +1283,61 @@ function initTestimonialsCarousel() {
 
   testimonialsGrid.classList.add("testimonials-carousel");
 
+  // Reset any previous inline styles and setup carousel
   testimonials.forEach((testimonial, index) => {
     testimonial.classList.add("testimonial-slide");
-    if (index === 0) testimonial.classList.add("active");
+    testimonial.style.opacity = "";
+    testimonial.style.transform = "";
+    testimonial.style.transition = "";
+
+    if (index === 0) {
+      testimonial.classList.add("active");
+    }
   });
 
-  function nextTestimonial() {
+  // Create navigation dots
+  const carouselNav = document.createElement("div");
+  carouselNav.className = "carousel-nav";
+
+  testimonials.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.className = `carousel-dot ${index === 0 ? "active" : ""}`;
+    dot.addEventListener("click", () => goToTestimonial(index));
+    carouselNav.appendChild(dot);
+  });
+
+  testimonialsGrid.parentNode.appendChild(carouselNav);
+
+  function updateDots() {
+    const dots = carouselNav.querySelectorAll(".carousel-dot");
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentTestimonial);
+    });
+  }
+
+  function goToTestimonial(index) {
+    if (index === currentTestimonial) return;
+
     testimonials[currentTestimonial].classList.remove("active");
     testimonials[currentTestimonial].classList.add("prev");
 
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    currentTestimonial = index;
 
     setTimeout(() => {
       testimonials.forEach((t) => t.classList.remove("prev"));
       testimonials[currentTestimonial].classList.add("active");
+      updateDots();
     }, 250);
+
+    gtmTrack("testimonial_clicked", {
+      testimonial_index: currentTestimonial,
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  function nextTestimonial() {
+    const nextIndex = (currentTestimonial + 1) % testimonials.length;
+    goToTestimonial(nextIndex);
 
     gtmTrack("testimonial_rotated", {
       testimonial_index: currentTestimonial,
