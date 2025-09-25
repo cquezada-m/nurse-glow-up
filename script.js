@@ -255,102 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Form handling
-  const leadForm =
-    document.getElementById("leadForm") ||
-    document.querySelector("#contacto form");
-  if (leadForm) {
-    leadForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-      const formObject = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-
-      // Validate required fields
-      const requiredFields = ["nombre", "servicio"];
-      let isValid = true;
-      let missingFields = [];
-
-      requiredFields.forEach((field) => {
-        const element = document.getElementById(field);
-        if (!element) return;
-
-        if (!element.value) {
-          isValid = false;
-          missingFields.push(field);
-          element.style.borderColor = "#E53E3E";
-        } else {
-          element.style.borderColor = "#E2E8F0";
-        }
-      });
-
-      if (!isValid) {
-        gtmTrack("form_error", {
-          error_type: "validation",
-          missing_fields: missingFields,
-          timestamp: new Date().toISOString(),
-        });
-
-        showFormMessage(
-          "Por favor completa todos los campos obligatorios.",
-          "error"
-        );
-        return;
-      }
-
-      // Track successful form submission
-      gtmTrack("submit_form", {
-        form_data: {
-          nombre: formObject.nombre,
-          servicio: formObject.servicio || "no_specified",
-          horario: formObject.horario || "no_specified",
-          has_message: !!formObject.mensaje,
-        },
-        timestamp: new Date().toISOString(),
-      });
-
-      // Simulate form submission (replace with actual API call)
-      setTimeout(() => {
-        showFormMessage(
-          "¡Gracias! Continuemos en WhatsApp para coordinar tu evaluación.",
-          "success"
-        );
-
-        // IMPORTANTE: Capturar datos ANTES del reset
-        const formDataForWhatsApp = {
-          nombre: formObject.nombre,
-          servicio: formObject.servicio,
-          horario: formObject.horario,
-          mensaje: formObject.mensaje,
-        };
-
-        // Guardar datos en sessionStorage para WhatsApp
-        sessionStorage.setItem(
-          "whatsappFormData",
-          JSON.stringify(formDataForWhatsApp)
-        );
-
-        // Reset inicial del formulario (visual)
-        leadForm.reset();
-
-        // Track conversion
-        gtmTrack("conversion_lead", {
-          conversion_type: "form_submission",
-          lead_source: "landing_page",
-          timestamp: new Date().toISOString(),
-        });
-
-        // Usar la nueva función mejorada de WhatsApp
-        setTimeout(() => {
-          sendWhatsAppMessage();
-          // Nota: sendWhatsAppMessage() ya incluye el reseteo completo después de 3 segundos
-        }, 500);
-      }, 500);
-    });
-  }
+  // ===== NUEVO SISTEMA DE FORMULARIO MULTI-STEP =====
+  initNewFormSystem();
 
   // FAQ Accordion
   const faqQuestions = document.querySelectorAll(".faq-question");
@@ -1263,66 +1169,438 @@ function animateCounter(element, target) {
   }, stepTime);
 }
 
-// 6. SMART FORM FUNCTIONALITY
-let currentStep = 1;
-const totalSteps = 4;
+// ===== NUEVO SISTEMA DE FORMULARIO MULTI-STEP =====
 
-function nextStep(step) {
-  // Validate current step
+// Variables globales del formulario
+let formState = {
+  currentStep: 1,
+  totalSteps: 4,
+  data: {
+    nombre: "",
+    servicio: "",
+    horario: "",
+    mensaje: "",
+  },
+  preselectedService: null,
+};
+
+// Configurar selección previa de servicios desde botones superiores
+function setupServicePreselection() {
+  const serviceButtons = document.querySelectorAll(".service-cta");
+
+  serviceButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Obtener el servicio del data attribute GTM
+      const gtmEvent = this.getAttribute("data-gtm-event");
+      let serviceName = "";
+
+      if (gtmEvent.includes("mesoterapia")) {
+        serviceName = "mesoterapia";
+      } else if (gtmEvent.includes("prp")) {
+        serviceName = "prp";
+      } else if (gtmEvent.includes("lipolaser")) {
+        serviceName = "lipolaser";
+      } else if (gtmEvent.includes("radiofrecuencia")) {
+        serviceName = "radiofrecuencia";
+      } else if (gtmEvent.includes("cavitacion")) {
+        serviceName = "cavitacion";
+      } else if (gtmEvent.includes("vacumterapia")) {
+        serviceName = "vacumterapia";
+      }
+
+      // Guardar servicio preseleccionado
+      formState.preselectedService = serviceName;
+      formState.data.servicio = serviceName;
+
+      // Scroll al formulario
+      const formulario = document.getElementById("contacto");
+      if (formulario) {
+        formulario.scrollIntoView({ behavior: "smooth" });
+
+        // Preseleccionar el servicio en el select después del scroll
+        setTimeout(() => {
+          const servicioSelect = document.getElementById("servicio");
+          if (servicioSelect && serviceName) {
+            servicioSelect.value = serviceName;
+            servicioSelect.dispatchEvent(
+              new Event("change", { bubbles: true })
+            );
+
+            // Actualizar estado del botón WhatsApp
+            updateWhatsAppButtonState();
+          }
+        }, 800);
+      }
+
+      // Tracking GTM
+      gtmTrack("click_service_preselect", {
+        service_selected: serviceName,
+        timestamp: new Date().toISOString(),
+      });
+    });
+  });
+}
+
+// Validar paso actual
+function validateCurrentStep() {
   const currentStepElement = document.querySelector(
-    `.step[data-step="${currentStep}"]`
+    `.step[data-step="${formState.currentStep}"]`
   );
-  const inputs = currentStepElement.querySelectorAll("input, select");
-  let isValid = true;
+  if (!currentStepElement) return false;
 
-  inputs.forEach((input) => {
-    if (input.hasAttribute("required") && !input.value) {
+  const requiredInputs = currentStepElement.querySelectorAll(
+    "input[required], select[required]"
+  );
+  let isValid = true;
+  let firstInvalidInput = null;
+
+  requiredInputs.forEach((input) => {
+    const value = input.value.trim();
+
+    if (!value) {
       isValid = false;
       input.style.borderColor = "#E53E3E";
-      input.focus();
+      input.style.boxShadow = "0 0 0 3px rgba(229, 62, 62, 0.1)";
+
+      if (!firstInvalidInput) {
+        firstInvalidInput = input;
+      }
+
+      // Mostrar mensaje de error
+      showFieldError(input, "Este campo es obligatorio");
     } else {
       input.style.borderColor = "";
+      input.style.boxShadow = "";
+      hideFieldError(input);
     }
   });
 
   if (!isValid) {
+    // Focus en el primer campo inválido (solo en desktop)
+    if (firstInvalidInput && window.innerWidth > 768) {
+      firstInvalidInput.focus();
+    }
+
+    // Tracking de error
     gtmTrack("form_step_error", {
-      step: currentStep,
+      step: formState.currentStep,
       timestamp: new Date().toISOString(),
     });
-    return;
+
+    return false;
   }
 
-  // Guardar datos del paso actual antes de cambiar
-  const currentFormData = getFormData();
+  return true;
+}
 
-  // Hide current step
-  currentStepElement.classList.remove("active");
+// Mostrar error en campo específico
+function showFieldError(input, message) {
+  hideFieldError(input); // Limpiar error anterior
 
-  // Show next step
-  currentStep = step;
-  const nextStepElement = document.querySelector(`.step[data-step="${step}"]`);
-  nextStepElement.classList.add("active");
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "field-error-message";
+  errorDiv.textContent = message;
+  errorDiv.style.cssText = `
+    color: #E53E3E;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+    display: block;
+  `;
 
-  // Update progress bar
-  const progress = (currentStep / totalSteps) * 100;
-  document.getElementById("progressBar").style.width = `${progress}%`;
+  // Insertar el mensaje directamente después del input
+  if (input.nextSibling) {
+    input.parentNode.insertBefore(errorDiv, input.nextSibling);
+  } else {
+    input.parentNode.appendChild(errorDiv);
+  }
+}
 
-  // Focus first input in new step
-  const firstInput = nextStepElement.querySelector("input, select");
-  if (firstInput) {
-    setTimeout(() => firstInput.focus(), 300);
+// Ocultar error en campo específico
+function hideFieldError(input) {
+  const existingError = input.parentNode.querySelector(".field-error-message");
+  if (existingError) {
+    existingError.remove();
+  }
+}
+
+// Guardar datos del paso actual
+function saveCurrentStepData() {
+  const currentStepElement = document.querySelector(
+    `.step[data-step="${formState.currentStep}"]`
+  );
+  if (!currentStepElement) return;
+
+  const inputs = currentStepElement.querySelectorAll("input, select, textarea");
+  inputs.forEach((input) => {
+    if (input.name && formState.data.hasOwnProperty(input.name)) {
+      formState.data[input.name] = input.value.trim();
+    }
+  });
+
+  // Guardar en sessionStorage para persistencia
+  sessionStorage.setItem("formState", JSON.stringify(formState));
+}
+
+// Navegar a un paso específico
+function navigateToStep(targetStep) {
+  if (targetStep < 1 || targetStep > formState.totalSteps) return;
+
+  // Ocultar paso actual
+  const currentStepElement = document.querySelector(
+    `.step[data-step="${formState.currentStep}"]`
+  );
+  if (currentStepElement) {
+    currentStepElement.classList.remove("active");
+  }
+
+  // Mostrar paso objetivo
+  formState.currentStep = targetStep;
+  const targetStepElement = document.querySelector(
+    `.step[data-step="${targetStep}"]`
+  );
+  if (targetStepElement) {
+    targetStepElement.classList.add("active");
+  }
+
+  // Actualizar barra de progreso
+  const progress = (formState.currentStep / formState.totalSteps) * 100;
+  const progressBar = document.getElementById("progressBar");
+  if (progressBar) {
+    progressBar.style.width = `${progress}%`;
+  }
+
+  // Focus en primer input (solo desktop)
+  if (window.innerWidth > 768) {
+    const firstInput = targetStepElement?.querySelector("input, select");
+    if (firstInput) {
+      setTimeout(() => firstInput.focus(), 300);
+    }
   }
 
   // Actualizar estado del botón WhatsApp
   updateWhatsAppButtonState();
 
+  // Tracking
   gtmTrack("form_step_completed", {
-    step: currentStep - 1,
-    next_step: currentStep,
+    from_step: formState.currentStep - 1,
+    to_step: formState.currentStep,
     progress_percentage: progress,
-    form_data_captured: Object.keys(currentFormData).length,
     timestamp: new Date().toISOString(),
+  });
+}
+
+// Función global nextStep para compatibilidad con HTML
+function nextStep(targetStep) {
+  if (!validateCurrentStep()) {
+    return false;
+  }
+
+  saveCurrentStepData();
+  navigateToStep(targetStep);
+  return true;
+}
+
+// Configurar envío del formulario
+function setupFormSubmission() {
+  const leadForm = document.getElementById("leadForm");
+  if (!leadForm) return;
+
+  // Función para manejar el envío
+  const handleFormSubmit = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Validar que estamos en el último paso
+    if (formState.currentStep !== formState.totalSteps) {
+      return false;
+    }
+
+    // Validar paso actual
+    if (!validateCurrentStep()) {
+      return false;
+    }
+
+    // Guardar datos finales
+    saveCurrentStepData();
+
+    // Validar campos obligatorios
+    const requiredFields = ["nombre", "servicio"];
+    const missingFields = [];
+
+    requiredFields.forEach((field) => {
+      if (!formState.data[field] || formState.data[field].trim() === "") {
+        missingFields.push(field);
+      }
+    });
+
+    if (missingFields.length > 0) {
+      gtmTrack("form_error", {
+        error_type: "validation",
+        missing_fields: missingFields,
+        timestamp: new Date().toISOString(),
+      });
+
+      showFormMessage(
+        "Por favor completa todos los campos obligatorios.",
+        "error"
+      );
+      return false;
+    }
+
+    // Tracking de envío exitoso
+    gtmTrack("submit_form", {
+      form_data: {
+        nombre: formState.data.nombre,
+        servicio: formState.data.servicio,
+        horario: formState.data.horario || "no_specified",
+        has_message: !!formState.data.mensaje,
+        preselected_service: !!formState.preselectedService,
+      },
+      timestamp: new Date().toISOString(),
+    });
+
+    // Procesar envío
+    processFormSubmission();
+  };
+
+  // Event listeners para compatibilidad mobile/desktop
+  leadForm.addEventListener("submit", handleFormSubmit);
+
+  // Event listener adicional para el botón submit
+  const submitButton = leadForm.querySelector('button[type="submit"]');
+  if (submitButton) {
+    // Click event
+    submitButton.addEventListener("click", function (e) {
+      if (formState.currentStep === formState.totalSteps) {
+        // Permitir que el evento submit se dispare naturalmente
+        return;
+      } else {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
+    // Touch event para mobile
+    submitButton.addEventListener("touchend", function (e) {
+      if (formState.currentStep === formState.totalSteps) {
+        setTimeout(() => {
+          if (leadForm.checkValidity()) {
+            handleFormSubmit.call(leadForm, e);
+          }
+        }, 100);
+      }
+    });
+  }
+}
+
+// Procesar envío del formulario
+function processFormSubmission() {
+  // Mostrar mensaje de éxito
+  showFormMessage(
+    "¡Gracias! Continuemos en WhatsApp para coordinar tu evaluación.",
+    "success"
+  );
+
+  // Preparar datos para WhatsApp
+  const whatsappData = {
+    nombre: formState.data.nombre,
+    servicio: formState.data.servicio,
+    horario: formState.data.horario,
+    mensaje: formState.data.mensaje,
+    preselected: formState.preselectedService,
+  };
+
+  // Guardar en sessionStorage para WhatsApp
+  sessionStorage.setItem("whatsappFormData", JSON.stringify(whatsappData));
+
+  // Reset visual del formulario
+  const leadForm = document.getElementById("leadForm");
+  if (leadForm) {
+    leadForm.reset();
+  }
+
+  // Tracking de conversión
+  gtmTrack("conversion_lead", {
+    conversion_type: "form_submission",
+    lead_source: "landing_page",
+    service_selected: formState.data.servicio,
+    timestamp: new Date().toISOString(),
+  });
+
+  // Enviar a WhatsApp después de un delay
+  setTimeout(() => {
+    sendWhatsAppMessage();
+  }, 500);
+}
+
+// Inicializar todo el sistema de formulario
+function initNewFormSystem() {
+  // Restaurar estado si existe
+  restoreFormState();
+
+  // Configurar componentes
+  setupServicePreselection();
+  setupFormSubmission();
+  setupFormValidation();
+
+  // Inicializar estado del botón WhatsApp
+  updateWhatsAppButtonState();
+}
+
+// Restaurar estado del formulario desde sessionStorage
+function restoreFormState() {
+  try {
+    const savedState = sessionStorage.getItem("formState");
+    if (savedState) {
+      const parsed = JSON.parse(savedState);
+      // Solo restaurar datos, no el paso actual (siempre empezar desde el paso 1)
+      formState.data = { ...formState.data, ...parsed.data };
+      formState.preselectedService = parsed.preselectedService;
+    }
+  } catch (e) {
+    // Error silencioso
+  }
+}
+
+// Configurar validación en tiempo real
+function setupFormValidation() {
+  const leadForm = document.getElementById("leadForm");
+  if (!leadForm) return;
+
+  // Agregar event listeners a todos los inputs
+  const inputs = leadForm.querySelectorAll("input, select, textarea");
+  inputs.forEach((input) => {
+    // Limpiar errores al escribir
+    input.addEventListener("input", function () {
+      if (this.value.trim()) {
+        this.style.borderColor = "";
+        this.style.boxShadow = "";
+        hideFieldError(this);
+      }
+
+      // Guardar datos en tiempo real
+      if (this.name && formState.data.hasOwnProperty(this.name)) {
+        formState.data[this.name] = this.value.trim();
+        sessionStorage.setItem("formState", JSON.stringify(formState));
+      }
+
+      // Actualizar estado del botón WhatsApp
+      updateWhatsAppButtonState();
+    });
+
+    input.addEventListener("change", function () {
+      if (this.name && formState.data.hasOwnProperty(this.name)) {
+        formState.data[this.name] = this.value.trim();
+        sessionStorage.setItem("formState", JSON.stringify(formState));
+      }
+
+      updateWhatsAppButtonState();
+    });
   });
 }
 
