@@ -382,6 +382,34 @@
             "urlTemplate": "https://nurseglowup.cl/buscar?q={search_term_string}"
           },
           "query-input": "required name=search_term_string"
+        },
+        {
+          "@type": "ReserveAction",
+          "name": "Reservar Evaluación Gratuita",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://nurseglowup.cl/#contacto",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Evaluación Estética Gratuita"
+          }
+        },
+        {
+          "@type": "CommunicateAction",
+          "name": "Contactar por WhatsApp",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wa.me/56975730668?text=Hola%2C%20quiero%20agendar%20mi%20evaluaci%C3%B3n%20gratuita",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          }
         }
       ]
     },
@@ -416,6 +444,101 @@
       "sameAs": [
         "https://www.instagram.com/nurseglowup",
         "https://www.facebook.com/nurseglowup"
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nurseglowup.cl/#services",
+      "name": "Tratamientos Estéticos No Invasivos",
+      "description": "Servicios de medicina estética avanzada en Santiago Centro",
+      "provider": {
+        "@id": "https://nurseglowup.cl/#medicalbusiness"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Santiago, Chile"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios Disponibles",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Service",
+              "name": "Mesoterapia Facial y Corporal",
+              "description": "Reduce grasa localizada y mejora la textura de la piel",
+              "url": "https://nurseglowup.cl/#servicios",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Service",
+              "name": "Plasma Rico en Plaquetas (PRP)",
+              "description": "Regeneración natural de la piel con tu propio plasma",
+              "url": "https://nurseglowup.cl/#servicios",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Service",
+              "name": "Lipoláser No Invasivo",
+              "description": "Reducción de medidas sin cirugía",
+              "url": "https://nurseglowup.cl/#servicios",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Service",
+              "name": "Evaluación Gratuita",
+              "description": "Consulta inicial sin costo para evaluar tus necesidades",
+              "url": "https://nurseglowup.cl/#contacto",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "CLP",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          }
+        ]
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Agenda una sesión ahora",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://nurseglowup.cl/#contacto"
+          }
+        },
+        {
+          "@type": "ViewAction",
+          "name": "Ver Tratamientos Disponibles",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://nurseglowup.cl/#servicios"
+          }
+        }
       ]
     }
   ]

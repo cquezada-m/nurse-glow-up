@@ -9,6 +9,60 @@ function gtmTrack(eventName, eventData = {}) {
   });
 }
 
+// Clear form-related localStorage on page load
+function clearFormStorage() {
+  try {
+    // Clear WhatsApp form data
+    sessionStorage.removeItem("whatsappFormData");
+    localStorage.removeItem("whatsappFormData");
+
+    // Clear any other form-related storage
+    const keysToRemove = [];
+
+    // Check sessionStorage
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      if (
+        key &&
+        (key.includes("form") ||
+          key.includes("Form") ||
+          key.includes("lead") ||
+          key.includes("Lead"))
+      ) {
+        keysToRemove.push({ storage: "session", key: key });
+      }
+    }
+
+    // Check localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (
+        key &&
+        (key.includes("form") ||
+          key.includes("Form") ||
+          key.includes("lead") ||
+          key.includes("Lead"))
+      ) {
+        keysToRemove.push({ storage: "local", key: key });
+      }
+    }
+
+    // Remove identified keys
+    keysToRemove.forEach((item) => {
+      if (item.storage === "session") {
+        sessionStorage.removeItem(item.key);
+      } else {
+        localStorage.removeItem(item.key);
+      }
+    });
+  } catch (e) {
+    // Error silencioso
+  }
+}
+
+// Execute on page load
+clearFormStorage();
+
 // Intersection Observer for view events and animations
 const observerOptions = {
   threshold: 0.3,
@@ -261,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Simulate form submission (replace with actual API call)
       setTimeout(() => {
         showFormMessage(
-          "¡Gracias! Te contactaremos por WhatsApp en breve para coordinar tu evaluación.",
+          "¡Gracias! Continuemos en WhatsApp para coordinar tu evaluación.",
           "success"
         );
 
@@ -293,8 +347,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           sendWhatsAppMessage();
           // Nota: sendWhatsAppMessage() ya incluye el reseteo completo después de 3 segundos
-        }, 2000);
-      }, 1000);
+        }, 500);
+      }, 500);
     });
   }
 
@@ -1955,12 +2009,8 @@ function clearFormData() {
       }
     });
 
-    // Limpiar sessionStorage también
-    try {
-      sessionStorage.removeItem("whatsappFormData");
-    } catch (e) {
-      // Error silencioso
-    }
+    // Limpiar todo el storage relacionado al formulario
+    clearFormStorage();
 
     // Resetear formulario multi-step al paso 1
     currentStep = 1;
