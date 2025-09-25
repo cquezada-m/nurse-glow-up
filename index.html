@@ -64,7 +64,31 @@
     <meta property="og:type" content="website" />
 
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/favicon/site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico" />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#D946EF" />
+    <meta name="msapplication-TileColor" content="#D946EF" />
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json" src="schema.json"></script>
@@ -94,7 +118,7 @@
               <img
                 src="images/ngu-logo.png"
                 alt="Nurse Glow Up - Centro de Estética Santiago"
-                class="h-8 w-auto"
+                class="nurse-logo"
               />
             </a>
           </div>
@@ -103,7 +127,7 @@
               type="button"
               command="show-modal"
               commandfor="mobile-menu"
-              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+              class="mobile-menu-button"
             >
               <span class="sr-only">Abrir menú</span>
               <svg
@@ -113,7 +137,7 @@
                 stroke-width="1.5"
                 data-slot="icon"
                 aria-hidden="true"
-                class="size-6"
+                class="menu-icon"
               >
                 <path
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
@@ -163,7 +187,7 @@
                     type="button"
                     command="close"
                     commandfor="mobile-menu"
-                    class="-m-2.5 rounded-md p-2.5 text-white"
+                    class="mobile-menu-close-button"
                   >
                     <span class="sr-only">Cerrar menú</span>
                     <svg
@@ -173,7 +197,7 @@
                       stroke-width="1.5"
                       data-slot="icon"
                       aria-hidden="true"
-                      class="size-6"
+                      class="close-icon"
                     >
                       <path
                         d="M6 18 18 6M6 6l12 12"
@@ -188,29 +212,29 @@
                     <div class="space-y-2 py-6">
                       <a
                         href="#tratamientos"
-                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Servicios</a
                       >
                       <a
                         href="#tratamientos"
-                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Tratamientos</a
                       >
                       <a
                         href="#testimonios"
-                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Testimonios</a
                       >
                       <a
                         href="#contacto"
-                        class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Contacto</a
                       >
                     </div>
                     <div class="py-6">
                       <a
                         href="#contacto"
-                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                        class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
                         >Reservar Cita</a
                       >
                     </div>
@@ -268,11 +292,11 @@
               class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl"
             >
               Vive la experiencia estética que transforma tu
-              <span
-                class="typewriter-word"
-                data-words="Imagen,Energía,Autoestima,Glow Up"
-              ></span>
             </h1>
+            <h1
+              class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl typewriter-word"
+              data-words="Imagen,Energía,Autoestima,Glow Up"
+            ></h1>
             <p
               class="mt-8 text-lg font-medium text-pretty sm:text-xl/8"
               style="color: var(--text-lighter)"
@@ -1345,9 +1369,11 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">
-            <div class="logo">
-              <span class="logo-text">Nurse Glow Up</span>
-            </div>
+            <img
+              src="images/ngu-logo.png"
+              alt="Nurse Glow Up - Centro de Estética Santiago"
+              class="nurse-logo mb-5"
+            />
             <p>
               Especialistas en mesoterapia, PRP y tratamientos corporales.
               Atención personalizada en Santiago.

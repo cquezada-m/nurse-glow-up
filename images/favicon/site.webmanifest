@@ -1,0 +1,21 @@
+{
+  "name": "Nurse Glow Up - Centro Estético Santiago",
+  "short_name": "Nurse Glow Up",
+  "icons": [
+    {
+      "src": "/images/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#D946EF",
+  "background_color": "#1a1a2e",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Centro estético en Santiago Centro. Mesoterapia, PRP facial, lipoláser y más tratamientos no invasivos."
+}

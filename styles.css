@@ -175,6 +175,120 @@ h6,
   line-height: 1.6;
 }
 
+.nurse-logo {
+  height: 80px;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  margin: -0.625rem;
+  border-radius: 0.375rem;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mobile-menu-button svg,
+.menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Mobile Menu Close Button */
+.mobile-menu-close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  margin: -0.625rem;
+  border-radius: 0.375rem;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-close-button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mobile-menu-close-button svg,
+.close-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Mobile Menu Transitions */
+#mobile-menu {
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#mobile-menu[open] {
+  opacity: 1;
+  visibility: visible;
+}
+
+#mobile-menu:not([open]) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#mobile-menu .el-dialog-panel {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+#mobile-menu.closing .el-dialog-panel {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Backdrop fade effect */
+#mobile-menu::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease-in-out;
+}
+
+#mobile-menu.closing::backdrop {
+  opacity: 0;
+}
+
+/* Smooth slide-in effect on open */
+#mobile-menu[open] .el-dialog-panel {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 /* Section Base Styles */
 section {
   padding: var(--section-padding);
@@ -3714,6 +3828,30 @@ p {
     padding: 0.2rem 0.6rem;
   }
 
+  /* Mobile Menu Button */
+  .mobile-menu-button {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+
+  .mobile-menu-button svg,
+  .menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Mobile Menu Close Button */
+  .mobile-menu-close-button {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+
+  .mobile-menu-close-button svg,
+  .close-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   /* Carousel Mobile Small */
   .testimonials-carousel {
     min-height: 250px;
@@ -3732,6 +3870,26 @@ p {
     height: 10px;
   }
 
+  /* Mobile Menu Transitions - Mobile */
+  #mobile-menu .el-dialog-panel {
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  }
+
+  #mobile-menu[open] .el-dialog-panel {
+    animation: slideInFromRight 0.25s ease-out;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
   .services-hero,
   .products,
   .specialists,
@@ -3739,6 +3897,16 @@ p {
   .gallery,
   .contact-form {
     padding: 3rem 0;
+  }
+
+  /* Mobile Menu Link Click Effect */
+  .mobile-menu-link {
+    transition: all 0.2s ease;
+  }
+
+  .mobile-menu-link.clicked {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(0.98);
   }
 }
 
@@ -3965,30 +4133,37 @@ div[style*="background-color: var(--bg-dark)"] {
   color: var(--accent-color);
   font-weight: 800;
   font-family: "Montserrat", sans-serif;
-  display: inline-block;
-  min-width: 1ch;
+  display: block;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* Prevent layout shifts */
+  overflow: hidden;
+  white-space: nowrap;
+  /* Ensure consistent baseline */
+  line-height: 1.2;
+  /* Prevent content from affecting layout */
+  box-sizing: border-box;
 }
 
 .typewriter-word::after {
   content: "|";
   position: absolute;
   right: -0.05em;
+  top: 0;
   color: var(--accent-color);
   animation: blink 1s infinite;
   font-weight: 300;
   font-size: 0.9em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* Ensure cursor doesn't affect layout */
+  width: 0;
+  overflow: visible;
 }
 
 .typewriter-word.typing::after {
   animation: blink 0.7s infinite;
 }
 
-/* Smooth character transitions */
-.typewriter-word {
-  transition: all 0.1s ease-out;
-}
+/* Smooth character transitions - removed to prevent layout shifts */
 
 @keyframes blink {
   0%,

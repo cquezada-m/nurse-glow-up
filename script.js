@@ -7,7 +7,6 @@ function gtmTrack(eventName, eventData = {}) {
     event: eventName,
     ...eventData,
   });
-  console.log("GTM Event:", eventName, eventData);
 }
 
 // Intersection Observer for view events and animations
@@ -159,6 +158,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const serviceSelect = document.getElementById("servicio");
           if (serviceSelect) {
             serviceSelect.value = serviceType;
+
+            // Disparar eventos para actualizar estado
+            serviceSelect.dispatchEvent(new Event("input", { bubbles: true }));
+            serviceSelect.dispatchEvent(new Event("change", { bubbles: true }));
+
+            // Guardar inmediatamente en sessionStorage
+            const currentData = getFormData();
+
             // Add visual feedback
             serviceSelect.style.borderColor = "#D946EF";
             serviceSelect.style.boxShadow = "0 0 0 3px rgba(217, 70, 239, 0.1)";
@@ -172,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Mostrar tooltip de WhatsApp
             showWhatsAppTooltip(
-              "¡Servicio seleccionado! Completa más datos para WhatsApp"
+              "¡Servicio seleccionado! Haz clic aquí para WhatsApp o completa más datos"
             );
           }
         }, 500);
@@ -502,21 +509,52 @@ function initTypewriter() {
   let deleteSpeed = 80;
   let pauseTime = 2500;
 
+  // Fix height to prevent layout shift
+  function fixTypewriterHeight() {
+    // Find the longest word to calculate maximum height needed
+    let longestWord = "";
+    words.forEach((word) => {
+      if (word.length > longestWord.length) {
+        longestWord = word;
+      }
+    });
+
+    // Temporarily set the longest word to measure height
+    const originalContent = typewriterElement.textContent;
+    typewriterElement.textContent = longestWord;
+
+    // Get the computed height
+    const height = typewriterElement.offsetHeight;
+
+    // Set fixed height to prevent layout shifts
+    typewriterElement.style.height = height + "px";
+    typewriterElement.style.minHeight = height + "px";
+    typewriterElement.style.display = "block";
+
+    // Restore original content
+    typewriterElement.textContent = originalContent;
+  }
+
   function type() {
     const currentWord = words[currentWordIndex];
 
     if (isDeleting) {
       // Deleting characters
-      typewriterElement.textContent = currentWord.substring(
-        0,
-        currentCharIndex - 1
-      );
+      const newText = currentWord.substring(0, currentCharIndex - 1);
+
+      if (newText === "") {
+        // Use a zero-width space to maintain height when empty
+        typewriterElement.innerHTML = "&#8203;"; // Zero-width space
+      } else {
+        typewriterElement.textContent = newText;
+      }
+
       currentCharIndex--;
 
       if (currentCharIndex === 0) {
         isDeleting = false;
         currentWordIndex = (currentWordIndex + 1) % words.length;
-        setTimeout(type, 500); // Pause before typing next word
+        setTimeout(type, 300); // Shorter pause when transitioning
         return;
       }
 
@@ -541,11 +579,23 @@ function initTypewriter() {
     }
   }
 
-  // Start the typewriter effect after a delay
+  // Initialize with first word and fix height
+  typewriterElement.textContent = words[0];
+
+  // Fix height after DOM is fully rendered
   setTimeout(() => {
-    typewriterElement.classList.add("typing");
-    type();
-  }, 2000);
+    fixTypewriterHeight();
+
+    // Reset and start the typewriter effect
+    typewriterElement.textContent = "";
+    typewriterElement.innerHTML = "&#8203;"; // Start with zero-width space
+    currentCharIndex = 0;
+
+    setTimeout(() => {
+      typewriterElement.classList.add("typing");
+      type();
+    }, 500);
+  }, 100);
 }
 
 // Initialize typewriter when DOM is loaded
@@ -1189,6 +1239,9 @@ function nextStep(step) {
     return;
   }
 
+  // Guardar datos del paso actual antes de cambiar
+  const currentFormData = getFormData();
+
   // Hide current step
   currentStepElement.classList.remove("active");
 
@@ -1207,10 +1260,14 @@ function nextStep(step) {
     setTimeout(() => firstInput.focus(), 300);
   }
 
+  // Actualizar estado del botón WhatsApp
+  updateWhatsAppButtonState();
+
   gtmTrack("form_step_completed", {
     step: currentStep - 1,
     next_step: currentStep,
     progress_percentage: progress,
+    form_data_captured: Object.keys(currentFormData).length,
     timestamp: new Date().toISOString(),
   });
 }
@@ -1276,6 +1333,8 @@ function initTestimonialsCarousel() {
   if (testimonials.length <= 1) return;
 
   let currentTestimonial = 0;
+  let autoRotateInterval = null;
+  let isFormActive = false;
 
   // Add carousel structure
   const testimonialsGrid = document.querySelector(".testimonials-grid");
@@ -1283,17 +1342,48 @@ function initTestimonialsCarousel() {
 
   testimonialsGrid.classList.add("testimonials-carousel");
 
+  // Fix container height to prevent layout shifts
+  function fixContainerHeight() {
+    let maxHeight = 0;
+    testimonials.forEach((testimonial) => {
+      testimonial.style.position = "absolute";
+      testimonial.style.opacity = "1";
+      testimonial.style.visibility = "visible";
+      const height = testimonial.offsetHeight;
+      if (height > maxHeight) {
+        maxHeight = height;
+      }
+    });
+
+    // Set fixed height to container
+    testimonialsGrid.style.position = "relative";
+    testimonialsGrid.style.height = maxHeight + "px";
+    testimonialsGrid.style.overflow = "hidden";
+  }
+
   // Reset any previous inline styles and setup carousel
   testimonials.forEach((testimonial, index) => {
     testimonial.classList.add("testimonial-slide");
     testimonial.style.opacity = "";
     testimonial.style.transform = "";
     testimonial.style.transition = "";
+    testimonial.style.position = "absolute";
+    testimonial.style.top = "0";
+    testimonial.style.left = "0";
+    testimonial.style.width = "100%";
 
     if (index === 0) {
       testimonial.classList.add("active");
+      testimonial.style.opacity = "1";
+      testimonial.style.visibility = "visible";
+    } else {
+      testimonial.style.opacity = "0";
+      testimonial.style.visibility = "hidden";
     }
   });
+
+  // Fix height after setup
+  setTimeout(fixContainerHeight, 100);
 
   // Create navigation dots
   const carouselNav = document.createElement("div");
@@ -1318,16 +1408,20 @@ function initTestimonialsCarousel() {
   function goToTestimonial(index) {
     if (index === currentTestimonial) return;
 
+    // Fade out current
+    testimonials[currentTestimonial].style.opacity = "0";
+    testimonials[currentTestimonial].style.visibility = "hidden";
     testimonials[currentTestimonial].classList.remove("active");
-    testimonials[currentTestimonial].classList.add("prev");
 
     currentTestimonial = index;
 
+    // Fade in new
     setTimeout(() => {
-      testimonials.forEach((t) => t.classList.remove("prev"));
+      testimonials[currentTestimonial].style.opacity = "1";
+      testimonials[currentTestimonial].style.visibility = "visible";
       testimonials[currentTestimonial].classList.add("active");
       updateDots();
-    }, 250);
+    }, 300);
 
     gtmTrack("testimonial_clicked", {
       testimonial_index: currentTestimonial,
@@ -1336,6 +1430,9 @@ function initTestimonialsCarousel() {
   }
 
   function nextTestimonial() {
+    // Don't auto-rotate if form is active
+    if (isFormActive) return;
+
     const nextIndex = (currentTestimonial + 1) % testimonials.length;
     goToTestimonial(nextIndex);
 
@@ -1345,8 +1442,73 @@ function initTestimonialsCarousel() {
     });
   }
 
-  // Auto-rotate every 5 seconds
-  setInterval(nextTestimonial, 5000);
+  function startAutoRotate() {
+    if (autoRotateInterval) clearInterval(autoRotateInterval);
+    autoRotateInterval = setInterval(nextTestimonial, 8000); // Increased to 8 seconds
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      autoRotateInterval = null;
+    }
+  }
+
+  // Detect form interaction
+  function detectFormInteraction() {
+    const formInputs = document.querySelectorAll(
+      "#leadForm input, #leadForm select, #leadForm textarea"
+    );
+
+    formInputs.forEach((input) => {
+      input.addEventListener("focus", () => {
+        isFormActive = true;
+        stopAutoRotate();
+      });
+
+      input.addEventListener("blur", () => {
+        // Delay before restarting to avoid immediate restart
+        setTimeout(() => {
+          const activeElement = document.activeElement;
+          const isStillInForm =
+            activeElement &&
+            (activeElement.closest("#leadForm") ||
+              activeElement.id === "whatsappSticky");
+
+          if (!isStillInForm) {
+            isFormActive = false;
+            startAutoRotate();
+          }
+        }, 1000);
+      });
+    });
+
+    // Also pause when hovering over form
+    const form = document.getElementById("leadForm");
+    if (form) {
+      form.addEventListener("mouseenter", () => {
+        isFormActive = true;
+        stopAutoRotate();
+      });
+
+      form.addEventListener("mouseleave", () => {
+        setTimeout(() => {
+          const activeElement = document.activeElement;
+          const isStillInForm =
+            activeElement && activeElement.closest("#leadForm");
+
+          if (!isStillInForm) {
+            isFormActive = false;
+            startAutoRotate();
+          }
+        }, 500);
+      });
+    }
+  }
+
+  // Initialize
+  detectFormInteraction();
+  startAutoRotate();
 }
 
 // 10. ENHANCED HOVER EFFECTS
@@ -1413,54 +1575,52 @@ const rippleCSS = `
 const style = document.createElement("style");
 style.textContent = rippleCSS;
 document.head.appendChild(style);
-
 // ===== WHATSAPP ENHANCED FUNCTIONALITY =====
 
 // Función para obtener datos del formulario inteligente
 function getFormData() {
-  // Primero intentar obtener datos guardados de sessionStorage (después del envío)
+  // Primero intentar obtener datos guardados de sessionStorage
+  let formData = {};
   try {
     const savedData = sessionStorage.getItem("whatsappFormData");
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      console.log("Datos recuperados de sessionStorage:", parsedData);
-
-      // Limpiar datos vacíos
-      Object.keys(parsedData).forEach((key) => {
-        if (!parsedData[key] || parsedData[key].trim() === "") {
-          delete parsedData[key];
-        }
-      });
-
-      if (Object.keys(parsedData).length > 0) {
-        console.log(
-          "Datos capturados del formulario (sessionStorage):",
-          parsedData
-        );
-        return parsedData;
-      }
+      formData = { ...parsedData };
     }
   } catch (e) {
-    console.log("Error al leer sessionStorage:", e);
+    // Error silencioso
   }
 
-  // Si no hay datos guardados, buscar en el formulario actual
+  // Buscar datos actuales en el formulario (todos los pasos)
   const form = document.getElementById("leadForm");
-  if (!form) return {};
+  if (form) {
+    // Obtener TODOS los inputs, selects y textareas del formulario (incluso los no visibles)
+    const inputs = form.querySelectorAll("input, select, textarea");
 
-  const formData = {};
+    inputs.forEach((input, index) => {
+      const value = input.value ? input.value.trim() : "";
 
-  // Obtener todos los inputs, selects y textareas del formulario
-  const inputs = form.querySelectorAll("input, select, textarea");
+      if (input.id && value !== "") {
+        formData[input.id] = value;
+      }
+    });
+  }
 
-  inputs.forEach((input) => {
-    if (input.id && input.value && input.value.trim() !== "") {
-      formData[input.id] = input.value.trim();
+  // Limpiar datos vacíos
+  Object.keys(formData).forEach((key) => {
+    if (!formData[key] || formData[key].trim() === "") {
+      delete formData[key];
     }
   });
 
-  // Debug: mostrar datos capturados en consola
-  console.log("Datos capturados del formulario (inputs actuales):", formData);
+  // Guardar en sessionStorage para persistencia
+  if (Object.keys(formData).length > 0) {
+    try {
+      sessionStorage.setItem("whatsappFormData", JSON.stringify(formData));
+    } catch (e) {
+      // Error silencioso
+    }
+  }
 
   return formData;
 }
@@ -1469,8 +1629,6 @@ function getFormData() {
 function generateWhatsAppMessage() {
   const formData = getFormData();
   const hasFormData = Object.keys(formData).length > 0;
-
-  console.log("Generando mensaje WhatsApp con datos:", formData);
 
   let message =
     "¡Hola! Me interesa agendar una evaluación gratuita en Nurse Glow Up.";
@@ -1515,7 +1673,6 @@ function generateWhatsAppMessage() {
       "\n\n¿Podrían darme más información sobre sus tratamientos y disponibilidad? ¡Gracias! 😊";
   }
 
-  console.log("Mensaje generado:", message);
   return message;
 }
 
@@ -1525,20 +1682,14 @@ function sendWhatsAppMessage(event) {
     event.preventDefault();
   }
 
-  console.log("=== ENVIANDO WHATSAPP ===");
-
   // Obtener datos del formulario
   const formData = getFormData();
-  console.log("Datos del formulario:", formData);
 
   // Generar mensaje
   const message = generateWhatsAppMessage();
-  console.log("Mensaje final:", message);
 
   const encodedMessage = encodeURIComponent(message);
   const whatsappURL = `https://wa.me/56975730668?text=${encodedMessage}`;
-
-  console.log("URL de WhatsApp:", whatsappURL);
 
   // Tracking GTM mejorado
   gtmTrack("click_whatsapp_enhanced", {
@@ -1550,28 +1701,17 @@ function sendWhatsAppMessage(event) {
     timestamp: new Date().toISOString(),
   });
 
-  // Mostrar preview del mensaje antes de enviar (para debug)
-  if (Object.keys(formData).length > 0) {
-    console.log("✅ Datos encontrados - enviando mensaje personalizado");
-  } else {
-    console.log("⚠️ No se encontraron datos - enviando mensaje genérico");
-  }
-
   // Abrir WhatsApp
   window.open(whatsappURL, "_blank");
 
   // Limpiar datos de sessionStorage después del envío
   setTimeout(() => {
     sessionStorage.removeItem("whatsappFormData");
-    console.log("Datos de WhatsApp limpiados de sessionStorage");
   }, 1000);
 
   // Resetear formulario después de 3 segundos
   setTimeout(() => {
     clearFormData();
-    console.log(
-      "✅ Formulario reseteado automáticamente después de abrir WhatsApp"
-    );
 
     // Tracking del reset automático
     gtmTrack("form_auto_reset", {
@@ -1707,26 +1847,8 @@ document.head.appendChild(tooltipStyle);
 
 // Event listeners para monitorear cambios en el formulario
 document.addEventListener("DOMContentLoaded", function () {
-  // Debug inicial
-  console.log("DOM cargado - inicializando WhatsApp functionality");
-
   // Verificar que el formulario existe
   const form = document.getElementById("leadForm");
-  console.log("Formulario encontrado:", !!form);
-
-  if (form) {
-    const allInputs = form.querySelectorAll("input, select, textarea");
-    console.log("Total de inputs en el formulario:", allInputs.length);
-
-    allInputs.forEach((input, index) => {
-      console.log(`Input ${index + 1}:`, {
-        id: input.id,
-        name: input.name,
-        type: input.type || input.tagName,
-        placeholder: input.placeholder,
-      });
-    });
-  }
 
   // Monitorear cambios en inputs del formulario
   const formInputs = document.querySelectorAll(
@@ -1734,8 +1856,22 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   formInputs.forEach((input) => {
-    input.addEventListener("input", updateWhatsAppButtonState);
-    input.addEventListener("change", updateWhatsAppButtonState);
+    // Actualizar estado del botón WhatsApp
+    input.addEventListener("input", () => {
+      updateWhatsAppButtonState();
+      // Guardar datos en tiempo real
+      setTimeout(() => {
+        getFormData();
+      }, 100);
+    });
+
+    input.addEventListener("change", () => {
+      updateWhatsAppButtonState();
+      // Guardar datos en tiempo real
+      setTimeout(() => {
+        getFormData();
+      }, 100);
+    });
   });
 
   // Mostrar tooltip contextual después de cierto tiempo
@@ -1753,38 +1889,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Ejecutar prueba automática después de 2 segundos
   setTimeout(() => {
-    console.log("=== PRUEBA AUTOMÁTICA INICIAL ===");
     testFormDataCapture();
   }, 2000);
 });
 
 // Función de prueba para verificar captura de datos
 function testFormDataCapture() {
-  console.log("=== PRUEBA DE CAPTURA DE DATOS ===");
-
   // Mostrar todos los inputs del formulario
   const form = document.getElementById("leadForm");
-  if (form) {
-    const inputs = form.querySelectorAll("input, select, textarea");
-    console.log("Inputs encontrados:", inputs.length);
-
-    inputs.forEach((input, index) => {
-      console.log(`Input ${index + 1}:`, {
-        id: input.id,
-        type: input.type || input.tagName,
-        value: input.value,
-        visible: input.offsetParent !== null,
-      });
-    });
-  }
 
   // Probar captura de datos
   const formData = getFormData();
-  console.log("Datos capturados:", formData);
 
   // Generar mensaje de prueba
   const message = generateWhatsAppMessage();
-  console.log("Mensaje generado:", message);
 
   return {
     formData,
@@ -1797,8 +1915,6 @@ function testFormDataCapture() {
 
 // Función para llenar formulario con datos de prueba
 function fillTestData() {
-  console.log("=== LLENANDO DATOS DE PRUEBA ===");
-
   const testData = {
     nombre: "María José González",
     servicio: "mesoterapia",
@@ -1810,13 +1926,10 @@ function fillTestData() {
     const field = document.getElementById(fieldId);
     if (field) {
       field.value = testData[fieldId];
-      console.log(`✅ Campo ${fieldId} llenado con: ${testData[fieldId]}`);
 
       // Disparar eventos para que se actualice el estado
       field.dispatchEvent(new Event("input", { bubbles: true }));
       field.dispatchEvent(new Event("change", { bubbles: true }));
-    } else {
-      console.log(`❌ Campo ${fieldId} no encontrado`);
     }
   });
 
@@ -1825,15 +1938,12 @@ function fillTestData() {
 
   // Verificar datos después de llenar
   setTimeout(() => {
-    console.log("=== VERIFICANDO DATOS DESPUÉS DE LLENAR ===");
     testFormDataCapture();
   }, 500);
 }
 
 // Función para limpiar formulario
 function clearFormData() {
-  console.log("=== LIMPIANDO FORMULARIO ===");
-
   const form = document.getElementById("leadForm");
   if (form) {
     const inputs = form.querySelectorAll("input, select, textarea");
@@ -1844,9 +1954,47 @@ function clearFormData() {
         input.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
-    console.log("Formulario limpiado");
+
+    // Limpiar sessionStorage también
+    try {
+      sessionStorage.removeItem("whatsappFormData");
+    } catch (e) {
+      // Error silencioso
+    }
+
+    // Resetear formulario multi-step al paso 1
+    currentStep = 1;
+    const steps = form.querySelectorAll(".step");
+    steps.forEach((step, index) => {
+      if (index === 0) {
+        step.classList.add("active");
+      } else {
+        step.classList.remove("active");
+      }
+    });
+
+    // Resetear barra de progreso
+    const progressBar = document.getElementById("progressBar");
+    if (progressBar) {
+      progressBar.style.width = "25%";
+    }
+
     updateWhatsAppButtonState();
   }
+}
+
+// Función para debug: mostrar estado actual del formulario
+function debugFormState() {
+  const formData = getFormData();
+  const completion = calculateFormCompletion();
+  const message = generateWhatsAppMessage();
+
+  return {
+    currentStep,
+    formData,
+    completion,
+    message,
+  };
 }
 
 // ===== GALLERY FUNCTIONALITY =====
@@ -1985,11 +2133,72 @@ function initInstagramTracking() {
   });
 }
 
+// MOBILE MENU AUTO-CLOSE WITH FADE EFFECT
+function closeMobileMenuWithFade(mobileMenu) {
+  // Agregar clase de cierre para activar animación
+  mobileMenu.classList.add("closing");
+
+  // Esperar a que termine la animación antes de cerrar
+  setTimeout(() => {
+    mobileMenu.close();
+    mobileMenu.classList.remove("closing");
+  }, 300); // 300ms coincide con la duración de la transición CSS
+}
+
+function initMobileMenuAutoClose() {
+  const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeButton = document.querySelector(
+    '[commandfor="mobile-menu"][command="close"]'
+  );
+
+  // Auto-close cuando se hace clic en enlaces
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Efecto visual de click
+      this.classList.add("clicked");
+
+      // Vibración táctil en dispositivos móviles
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+
+      // Remover el efecto después de la animación
+      setTimeout(() => {
+        this.classList.remove("clicked");
+      }, 200);
+
+      // Cerrar el menú móvil con fade (con un pequeño delay para ver el efecto)
+      if (mobileMenu) {
+        setTimeout(() => {
+          closeMobileMenuWithFade(mobileMenu);
+        }, 150);
+      }
+
+      // Track del click en menú móvil
+      gtmTrack("mobile_menu_click", {
+        link_text: this.textContent.trim(),
+        link_href: this.getAttribute("href"),
+        timestamp: new Date().toISOString(),
+      });
+    });
+  });
+
+  // Aplicar fade también al botón de cerrar
+  if (closeButton && mobileMenu) {
+    closeButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeMobileMenuWithFade(mobileMenu);
+    });
+  }
+}
+
 // Inicializar funcionalidades de reels
 document.addEventListener("DOMContentLoaded", function () {
   initReelsInteractions();
   initReelsAnimation();
   initInstagramTracking();
+  initMobileMenuAutoClose();
   showWhatsAppTooltip("¡Hola! ¿En qué puedo ayudarte?");
 });
 
@@ -1998,3 +2207,5 @@ window.sendWhatsAppMessage = sendWhatsAppMessage;
 window.testFormDataCapture = testFormDataCapture;
 window.fillTestData = fillTestData;
 window.clearFormData = clearFormData;
+window.debugFormState = debugFormState;
+window.getFormData = getFormData;
